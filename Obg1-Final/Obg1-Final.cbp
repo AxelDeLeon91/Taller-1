@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Obg1-Final" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Obg1-Final" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Obg1-Final" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="arbolExpresiones.cpp" />
+		<Unit filename="arbolExpresiones.h" />
+		<Unit filename="boolean.cpp" />
+		<Unit filename="boolean.h" />
+		<Unit filename="datosArbol.cpp" />
+		<Unit filename="datosArbol.h" />
+		<Unit filename="expresion.cpp" />
+		<Unit filename="expresion.h" />
+		<Unit filename="listaExpresiones.cpp" />
+		<Unit filename="listaExpresiones.h" />
+		<Unit filename="listaString.cpp" />
+		<Unit filename="listaString.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="string.cpp" />
+		<Unit filename="string.h" />
+		<Unit filename="tipoDato.cpp" />
+		<Unit filename="tipoDato.h" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

@@ -1,0 +1,64 @@
+# depslib dependency file v1.0
+1708292152 source:c:\users\elneg\onedrive\escritorio\facultad\taller 1\obg1-final\arbolexpresiones.cpp
+	<stdio.h>
+
+1708292152 source:c:\users\elneg\onedrive\escritorio\facultad\taller 1\obg1-final\boolean.cpp
+	<stdio.h>
+
+1708534520 source:c:\users\elneg\onedrive\escritorio\facultad\taller 1\obg1-final\datosarbol.cpp
+	<stdio.h>
+	"datosArbol.h"
+
+1708534598 source:c:\users\elneg\onedrive\escritorio\facultad\taller 1\obg1-final\expresion.cpp
+	<stdio.h>
+	"expresion.h"
+
+1708534580 source:c:\users\elneg\onedrive\escritorio\facultad\taller 1\obg1-final\listaexpresiones.cpp
+	<stdio.h>
+	"listaExpresiones.h"
+
+1708292373 source:c:\users\elneg\onedrive\escritorio\facultad\taller 1\obg1-final\main.cpp
+	<stdio.h>
+
+1708292152 source:c:\users\elneg\onedrive\escritorio\facultad\taller 1\obg1-final\tipodato.cpp
+	<stdio.h>
+
+1708537435 source:c:\users\elneg\onedrive\escritorio\facultad\taller 1\obg1-final\string.cpp
+	<stdio.h>
+	"string.h"
+
+1708537096 c:\users\elneg\onedrive\escritorio\facultad\taller 1\obg1-final\string.h
+	<stdio.h>
+	"boolean.h"
+
+1708292258 c:\users\elneg\onedrive\escritorio\facultad\taller 1\obg1-final\boolean.h
+	<stdio.h>
+
+1708539335 c:\users\elneg\onedrive\escritorio\facultad\taller 1\obg1-final\datosarbol.h
+	<stdio.h>
+	"tipoDato.h"
+	"string.h"
+
+1708292258 c:\users\elneg\onedrive\escritorio\facultad\taller 1\obg1-final\tipodato.h
+	<stdio.h>
+
+1708532226 c:\users\elneg\onedrive\escritorio\facultad\taller 1\obg1-final\listaexpresiones.h
+	<stdio.h>
+	"expresion.h"
+
+1708534580 c:\users\elneg\onedrive\escritorio\facultad\taller 1\obg1-final\expresion.h
+	<stdio.h>
+	"arbolExpresiones.h"
+
+1708539455 c:\users\elneg\onedrive\escritorio\facultad\taller 1\obg1-final\arbolexpresiones.h
+	<stdio.h>
+	"datosArbol.h"
+
+1708537384 source:c:\users\elneg\onedrive\escritorio\facultad\taller 1\obg1-final\listastring.cpp
+	<stdio.h>
+	"listaString.h"
+
+1708535614 c:\users\elneg\onedrive\escritorio\facultad\taller 1\obg1-final\listastring.h
+	<stdio.h>
+	"string.h"
+

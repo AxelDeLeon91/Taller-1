@@ -71,13 +71,11 @@ void imprimirLista(nodoString *lista) {
 }
 
 // Función para liberar la memoria de la lista de strings
-void liberarLista(nodoString *lista) {
-    nodoString *temp = lista;
-    while (temp != NULL) {
-        strdestruir(temp->str);
-        nodoString *next = temp->sig;
-        delete temp;
-        temp = next;
+void limpiarLista(listaString &lstr){
+    while(lstr != NULL){
+        listaString aux = lstr;
+        lstr = aux->sig;
+        delete aux;
     }
 }
 
@@ -89,149 +87,5 @@ int cantStrings(listaString lStr){
     }
     return cant;
 }
-/*
-//TODO ESTO VA EN EL MAIN CREO
-void ejecutarComando(listaString lStr){
-    int cantStr = cantStrings(lStr);
-    char c = reconocerComando(lStr->str);
-    switch(cantStr){
-    case 1:
-        if(c=='E'){
-            //Ejecuto EXIT
-        break;
-    }
-    case 2:
-        switch(c){
-            case 'A':
-                if(validarAtomic()==TRUE){
-                    //Ejecuto Atomic
-                }else
-                    //Muestro mensaje error
-                break;
-            case 'S':
-                //Ejecuto SHOW
-                break;
-            case 'E':
-                //Ejecuto Evaluate
-                break;
-            case 'L':
-                //Ejecuto Load
-                break;
-            default:
-                //Muestro mensaje error
-                break;
-        }
-        break;
-    case 3:
-        if(c=='C'){
-            //Ejecuto Compound Version NOT
-        }else if(c=='S'){
-                //Ejecuto Save
-                }
-        break;
-    case 4:
-        if(c=='E'){
-            //Ejecuto Compund Version AND/OR
-        }
-        break;
-    default:
-        //Muestro mensaje error
-        break;
-    }
-}
-*/
 
-/*
-DONDE VA TODOS ESTOS VALIDAR??
-boolean validarOperador(string s){
-    boolean valida=TRUE;
-    if(streq(s,"AND")==TRUE){
-        valida=TRUE;
-    }else if(streq(s,"OR")==TRUE){
-            valida=TRUE;
-    }else if(streq(s,"NOT")==TRUE){
-            valida=TRUE;
-    }
-    return valida;
-}
-
-boolean validarAtomic(listaString lStr){
-    boolean valida= FALSE;
-    listaString aux=lStr;
-    aux=aux->sig;
-    if(validarBool(aux->str)==TRUE){
-        valida=TRUE;
-    }
-    return valida;
-}
-
-boolean validarCompound4(listaString lStr){
-    boolean valida=FALSE;
-    listaString aux=lStr;
-    aux=aux->sig;//Avanzo porque el primer string es el comando Compound
-    int num = stringAEntero(aux->str);//Pasa un string a entero
-        if(existeExpresion(num)==TRUE){//Chequea que exista la expresion
-            aux=aux->sig;
-            if(validarOperador(aux->str)==TRUE){//SABER SI ES AND O OR
-                aux=aux->sig;
-                num = stringAentero(aux->str);
-                if(existeExpresion(num)==TRUE){
-                    valida=TRUE;
-                }
-    }
-}
-    return valida;
-}
-
-boolean validarCompound3(listaString lStr){
-    boolean valida= FALSE;
-    listaString aux=lStr;
-    aux=aux->sig;
-        if(validarOperador(aux->str)==TRUE){
-            aux=aux->sig;
-            int num = stringAentero(aux->str);
-            if(existeExpresion(num)==TRUE){
-                valida=TRUE;
-            }
-    return valida;
-}
-}
-
-boolean validarShow(listaString lStr){
-    boolean valida=FALSE;
-    listaString aux= lStr;
-    aux=aux->sig;
-    int num = stringAentero(aux->str);
-    if(existeExpresion(num)==TRUE){
-        valida=TRUE;
-        }
-    return valida;
-}
-
-boolean validarEvaluate(listaString lStr){
-    boolean valida=FALSE;
-    listaString aux= lStr;
-    aux=aux->sig;
-    int num = stringAentero(aux->str);
-    if(existeExpresion(num)==TRUE){
-        valida=TRUE;
-        }
-    return valida;
-}
-
-boolean validarSave(listaString lStr){
-    boolean valida=FALSE;
-    listaString aux= lStr;
-    aux=aux->sig;
-    int num = stringAentero(aux->str);
-    if(existeExpresion(num)==TRUE){
-        aux=aux->sig;
-        if(validarFormatoArchivo(aux->str)==TRUE){
-            valida==TRUE;
-        }
-    }
-
-    return valida;
-}
-*/
 

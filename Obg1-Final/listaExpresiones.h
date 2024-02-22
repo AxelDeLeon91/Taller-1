@@ -14,5 +14,6 @@ boolean existeExpresion(ListaExp lista, int num);
 void crearLista(ListaExp l);
 boolean listaVacia(ListaExp l);
 void insFront(ListaExp l, expresion e);
-void mostrarExpresion(expresion e);
+void mostrarExpresion(ListaExp lExp);
+
 #endif // LISTAEXPRESIONES_H_INCLUDED

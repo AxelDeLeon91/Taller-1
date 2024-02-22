@@ -189,6 +189,7 @@ int stringAentero(string s){
         if(s[i]>='0' && s[i]<='9'){
             resu = resu * 10+(s[i]-48);
         }
+        i++;
     }
     return resu;
 }
@@ -203,13 +204,52 @@ boolean validarBool(string s){
     return valida;
     }
 
-boolean validarFormatoArchivo(string s){
-    boolean valida=FALSE;
-    int largo = strlar(s);
-    if(largo>=5){//ES 5 O ES 4?
-        if(s[largo-3]=='.' && s[largo-2]=='d' && s[largo-1]=='a' && s[largo]=='t')
-            valida=TRUE;
+
+boolean validarEntero(string s){
+    boolean valida= TRUE;
+    if (s[0] == '\0') {
+        valida= FALSE;
     }
+    if(valida==TRUE){
+        for (int i=0;s[i]!='\0';i++) {
+            if (!(s[i]>='0' && s[i]<='9')) {
+                valida= FALSE;
+            }
+        }
+    }
+
     return valida;
 }
 
+boolean esLetra(char c) {
+    boolean es = FALSE;
+    if ((c>='a' && c<='z') || (c>='A' && c<='Z')){
+        es = TRUE;
+    }
+    return es;
+}
+
+boolean validarFormatoArchivo(string s) {
+    boolean valida = FALSE;
+    int largo = strlar(s);
+    if(largo>= 4) { // ES 5 O ES 4?
+        if (s[largo-3]=='.' && s[largo-2]=='d' && s[largo-1]=='a' && s[largo]=='t'){
+            for (int i = 0; i < largo - 4; i++) {
+                if (esLetra(s[i])==TRUE){
+                    valida=TRUE;
+                }
+              }
+            }
+        }
+    return valida;
+}
+
+boolean stringAboolean(string s){
+    boolean b= FALSE;
+    if(streq(s,"false")){
+        b=FALSE;
+    }else if(streq(s,"true")){
+            b=TRUE;
+    }
+    return b;
+}

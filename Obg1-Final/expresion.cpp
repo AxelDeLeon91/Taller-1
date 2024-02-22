@@ -5,6 +5,10 @@ int darNumero(expresion e){
     return e.numExpresion;
 }
 
-void mostrarArbol(arbol a){
-    mostrarArbol(a);
+void crearExpre(expresion e){
+    e.numExpresion=0;
+    e.abbExpresion= NULL;
+}
+void mostrarExpresion(expresion e){
+    mostrarArbolRecu(e.abbExpresion);
 }

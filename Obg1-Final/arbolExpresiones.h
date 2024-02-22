@@ -5,7 +5,6 @@
 
 typedef struct nodoA{
                 	datoABB info;
-                	int numero;
                 	nodoA * hizq;
                 	nodoA * hder;
             }nodoABB;
@@ -23,7 +22,6 @@ void colocarParentesis(arbol &a);
 void colocarParIzq(arbol &a);
 void colocarParDer(arbol &a);
 void juntarArboles(arbol a, arbol b, nodoABB Raiz, arbol &c);
-void mostrarArbol(arbol a);
 void mostrarArbolRecu(arbol a);
 
 int evaluarArbol(arbol a);

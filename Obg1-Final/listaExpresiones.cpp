@@ -5,7 +5,7 @@ boolean existeExpresion(ListaExp lista, int num){
     boolean existe=FALSE;
     if(lista==NULL){
         existe=FALSE;
-    }else if(num>darNumero(lista->exp)){
+    }else if(num<darNumero(lista->exp)){ //Deberia ser menor
             existe =TRUE;
         }
     return existe;
@@ -21,6 +21,11 @@ boolean listaVacia(ListaExp l){
     return es;
 }
 
+void mostrarExpresion(ListaExp lExp){
+    mostrarExpresion(lExp->exp);
+}
+
+//Problemas aqui
 void insFront(ListaExp &l, expresion e){
 
     if(listaVacia(l)==TRUE){
@@ -30,16 +35,13 @@ void insFront(ListaExp &l, expresion e){
         l->exp.numExpresion=1;
     }else{
         nodoLista nuevoNodo = new nodoLista;
-        nuevoNodo->exp=e;
+        nuevoNodo.exp=e;
         nuevoNodo->sig = l;
         l=nuevoNodo;
         l->exp.numExpresion=darNumero(l->sig->exp) + 1;
     }
 }
 
-void mostrarExpresion(expresion e){
-    mostrarExpresion(e);
-}
 
 
 

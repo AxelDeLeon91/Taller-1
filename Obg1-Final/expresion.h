@@ -10,6 +10,7 @@ typedef struct{
 
 
 int darNumero(expresion e);
-void mostrarArbol(arbol a);
+void crearExpre(expresion e);
+void mostrarExpresion(expresion e);
 
 #endif // EXPRESION_H_INCLUDED

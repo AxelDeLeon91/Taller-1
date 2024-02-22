@@ -30,13 +30,12 @@ int volverNumero(char c);
 //Segun el string, te dice que Operador es, retorna la Inicial o E en caso de error
 char saberOperador(string palabra);
 
-//Recibe u
+boolean stringAboolean(string s);
 void charAString(char c, string &s);
 void booleanAString(boolean b, string &s);
-
-int stringAEntero(string s);
-
+int stringAentero(string s);
 boolean validarBool(string s);
-
 boolean validarFormatoArchivo(string s);
+boolean validarEntero(string s);
+
 #endif // STRING_H_INCLUDED

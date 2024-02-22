@@ -36,6 +36,8 @@
 		<Unit filename="arbolExpresiones.h" />
 		<Unit filename="boolean.cpp" />
 		<Unit filename="boolean.h" />
+		<Unit filename="comando.cpp" />
+		<Unit filename="comando.h" />
 		<Unit filename="datosArbol.cpp" />
 		<Unit filename="datosArbol.h" />
 		<Unit filename="expresion.cpp" />

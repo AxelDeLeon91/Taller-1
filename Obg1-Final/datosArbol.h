@@ -5,6 +5,7 @@
 #include "string.h"
 
 typedef struct{
+                int numero;
         		tipoDato discriminante;
            		union {
                 	char op;

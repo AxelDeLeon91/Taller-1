@@ -30,7 +30,10 @@ void numerarArbol(arbol &a){
 void numerarRecursivo(arbol a, int &contador){
     if(a!=NULL){
         numerarRecursivo(a->hizq,contador);
+        setNumero(a->info,contador);
+        /*
         a->info.numero= contador;
+        */
         contador++;
         numerarRecursivo(a->hder,contador);
     }
@@ -48,11 +51,7 @@ void colocarParIzq(arbol &a){
         colocarParIzq(a->hizq);
     }
     a= new nodoABB;
-    /* Esto deberia cambiarse por un procedimiento de datosArbol*/
-        a->info.numero=0; //numero deberia ser parte de datoABB
-        a->info.discriminante=PARENTESIS;
-        a->info.datos.par='(';
-
+    setParentesis(a->info,'(');
     a->hder=NULL;
     a->hizq=NULL;
 }
@@ -62,25 +61,25 @@ void colocarParDer(arbol &a){
         colocarParDer(a->hder);
     }
     a= new nodoABB;
-    /* Esto deberia cambiarse por un procedimiento de datosArbol*/
-        a->info.numero=0; //numero deberia ser parte de datoABB
-        a->info.discriminante=PARENTESIS;
-        a->info.datos.par=')';
-
+    setParentesis(a->info,')');
     a->hder=NULL;
     a->hizq=NULL;
 }
 
-/*Deberia recibir lo que va dentro de la parte info del nodo (es decir datoABB).*/
 void juntarArboles(arbol a, arbol b, datoABB dat, arbol &c){
 
     c = new nodoABB;
     c->info= dat;
-
     c->hizq = a;
     c->hder = b;
+    colocarParentesis(c);
 }
 
+void cargarArbolAtomic(arbol &a, string s){
+    setValor(a->info,stringAboolean(s);)
+    a->hder=NULL;
+    a->hizq=NULL;
+}
 
 //Recorro en orden el ABB para mostrar la expresion bien
 void mostrarArbolRecu(arbol a){
@@ -91,30 +90,23 @@ void mostrarArbolRecu(arbol a){
     }
 }
 
-
-
-//AYUDAAYUDAAYUDAAYUDAAYUDAAYUDAAYUDAAYUDA
-int evaluarArbol(arbol a){
-    if(a == NULL){
-        return 0;
-    }
-
+datoABB darInfo(arbol a){
+    return a->info;
 }
 
-/* Para mi aca deberias tener....
-* En datosArbol esta la función que obtiene el discriminante para saber que tiene el nodo que tenes enfrente.
-* En arbolExpresiones podrias tener una funcion entera que recorra en "preorden", donde
-    * Evaluas el discriminante.
-        * Si es de tipo valor, retornas 1 si es TRUE o 0 si es FALSE (este retorno deberia ser una funcion entera de datosABB donde como precondicion se sabe que es de tipo Valor)
-        * Sino, si es de tipo Operador:
-            * Si es AND
-                se retorna llamado recursivo por izq * llamado recursivo por der
-            * Si es OR
-                se retorna llamado recursivo por izq + llamado recursivo por der
-            * Si es NOT
-                se retorna inverso a llamado recursivo por der.
-
-En definitiva los pasos base se dan cuando se llega a un nodo de tipo valor, a los nodos de parentesis no se llega al evaluar.
-Es una idea, a revisarla, pero creo que por ahi puede andar*/
+//AYUDAAYUDAAYUDAAYUDAAYUDAAYUDAAYUDAAYUDA
+boolean evaluarArbol(arbol a){
+    if(darDiscriminante(darInfo(a))==VALOR){
+        return darDatoBool(darInfo(a));
+    }else if(darDiscriminante(darInfo(a))==OPERADOR){
+            if(darOperador(darInfo(a))=='A'){
+               return (boolean) (evaluarArbol(a->hizq) && evaluarArbol(a->hder));//Aca iria la multiplicacion
+            }else if(darOperador(darInfo(a))== 'O'){
+                    return (boolean) (evaluarArbol(a->hizq) || evaluarArbol(a->hder)); //Aca iria la suma topeada en 1
+                     }
+            else//CASO NOT
+                return (boolean) !evaluarArbol(a->hder);
+    }
+}
 
 

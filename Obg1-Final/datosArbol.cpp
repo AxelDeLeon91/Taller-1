@@ -4,7 +4,32 @@
 tipoDato darDiscriminante(datoABB dat){
     return dat.discriminante;
 }
+void setNOT(datoABB dat){
+    dat.numero=0;
+    dat.discriminante=OPERADOR;
+    dat.datos.op= 'N';
+}
+void setOR(datoABB dat){
+    dat.numero=0;
+    dat.discriminante=OPERADOR;
+    dat.datos.op= 'O';
+}
+void setAND(datoABB dat){
+    dat.numero=0;
+    dat.discriminante=OPERADOR;
+    dat.datos.op= 'A';
+}
 
+void setParentesis(datoABB dat,char parentesis){
+    dat.numero=0;
+    dat.discriminante=PARENTESIS;
+    dat.datos.op=parentesis;
+}
+void setValor(datoABB dat, boolean b){
+    dat.discriminante=VALOR;
+    dat.numero=0;
+    dat.datos.v = b;
+}
 //Funciona solo si es un Operador o un Parentesis
 char darDatoChar(datoABB dat){
     char c;
@@ -22,6 +47,10 @@ boolean darDatoBool(datoABB dat){
         val= dat.datos.v;
     }
     return val;
+}
+
+char darOperador(datoABB dat){
+    return dat.datos.op;
 }
 
 //Separar cada uno en un MostrarOperador, MostrarValor y MostrarParentesis

@@ -136,7 +136,7 @@ char reconocerComando(string palabra) {
     }else if(streq(palabra,"compound")==TRUE){
         resultado= 'C';
     }else if(streq(palabra,"show")==TRUE){
-        resultado=  'S';
+        resultado=  'H';
     }else if(streq(palabra,"evaluate")==TRUE){
         resultado=  'E';
     }else if(streq(palabra,"save")==TRUE){
@@ -144,7 +144,7 @@ char reconocerComando(string palabra) {
     }else if(streq(palabra,"load")==TRUE){
         resultado=  'L';
     }else if(streq(palabra,"exit")==TRUE){
-        resultado=  'E';
+        resultado=  'X';
     }
     return resultado;
 }
@@ -232,7 +232,7 @@ boolean esLetra(char c) {
 boolean validarFormatoArchivo(string s) {
     boolean valida = FALSE;
     int largo = strlar(s);
-    if(largo>= 4) { // ES 5 O ES 4?
+    if(largo>4) {
         if (s[largo-3]=='.' && s[largo-2]=='d' && s[largo-1]=='a' && s[largo]=='t'){
             for (int i = 0; i < largo - 4; i++) {
                 if (esLetra(s[i])==TRUE){

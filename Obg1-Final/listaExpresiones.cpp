@@ -21,24 +21,34 @@ boolean listaVacia(ListaExp l){
     return es;
 }
 
-void mostrarExpresion(ListaExp lExp){
+void mostrarExpresion(ListaExp lExp,int i){
+    while(darNumero(lExp->exp)!=i){
+        lExp=lExp->sig;
+    }
+
     mostrarExpresion(lExp->exp);
 }
 
-//Problemas aqui
-void insFront(ListaExp &l, expresion e){
+expresion darExpresion(ListaExp lExp, int i){
 
+    while(darNumero(lExp->exp)!=i){
+        lExp=lExp->sig;
+    }
+    return lExp->exp;
+}
+
+void insFront(ListaExp &l, expresion e){
     if(listaVacia(l)==TRUE){
         l = new nodoLista;
         l->exp=e;
         l->sig=NULL;
         l->exp.numExpresion=1;
     }else{
-        nodoLista nuevoNodo = new nodoLista;
-        nuevoNodo.exp=e;
-        nuevoNodo->sig = l;
-        l=nuevoNodo;
-        l->exp.numExpresion=darNumero(l->sig->exp) + 1;
+        ListaExp aux = new nodoLista;
+        aux->exp= e;
+        setNumExp(aux->exp,darNumero(l->exp)+1);
+        aux->sig= l;
+        l=aux;
     }
 }
 

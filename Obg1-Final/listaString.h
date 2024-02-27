@@ -11,11 +11,13 @@ typedef struct nodoStr{
 
 typedef nodoString *listaString;
 
-void imprimirLista(nodoString &lista);
+void imprimirLista(listaString lStr);
 void limpiarLista(listaString &lstr);
 void separarStringEnLista(string original, listaString &lstr);
 void insBack(listaString &lista,string s);
 int cantStrings(listaString lStr);
+void crearListaString(listaString &lStr);
 
+void avanzarLstr(listaString &lStr);
 
 #endif // LISTASTRING_H_INCLUDED

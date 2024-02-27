@@ -21,8 +21,9 @@ void numerarRecursivo(arbol a , int &contador);
 void colocarParentesis(arbol &a);
 void colocarParIzq(arbol &a);
 void colocarParDer(arbol &a);
-void juntarArboles(arbol a, arbol b, nodoABB Raiz, arbol &c);
+void juntarArboles(arbol a, arbol b, datoABB dat, arbol &c);
 void mostrarArbolRecu(arbol a);
-
-int evaluarArbol(arbol a);
+void cargarArbolAtomic(arbol &a, string s);
+datoABB darInfo(arbol a);
+boolean evaluarArbol(arbol a);
 #endif // ARBOLEXPRESIONES_H_INCLUDED

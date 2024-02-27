@@ -10,5 +10,19 @@ void crearExpre(expresion e){
     e.abbExpresion= NULL;
 }
 void mostrarExpresion(expresion e){
+    printf("Expresion %d:", darNumero(e));
     mostrarArbolRecu(e.abbExpresion);
+}
+
+void setNumExp(expresion &e, int i){
+    e.numExpresion=i;
+}
+
+void cargarArbolCompoundNOT(arbol &a,expresion e){
+    a->hder=darArbol(e);
+    colocarParentesis(a);
+}
+
+arbol darArbol(expresion e){
+    return e.abbExpresion;
 }

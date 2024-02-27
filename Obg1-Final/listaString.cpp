@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include "listaString.h"
 
+void crearListaString(listaString &lStr){
+    lStr = NULL;
+}
+
 void insBack(listaString &lista, string s) {
 
     if (lista == NULL) {
@@ -17,7 +21,9 @@ void insBack(listaString &lista, string s) {
         aux->sig->sig = NULL;
     }
 }
-
+void avanzarLstr(listaString &lStr){
+    lStr=lStr->sig;
+}
 
 // Función para separar el string en una lista de strings
 void separarStringEnLista(string original, listaString &lstr) {
@@ -61,12 +67,11 @@ void separarStringEnLista(string original, listaString &lstr) {
 }
 
 // Función para imprimir la lista de strings
-void imprimirLista(nodoString *lista) {
-    nodoString *temp = lista;
-    while (temp != NULL) {
-        print(temp->str);
+void imprimirLista(listaString lStr){
+    while (lStr != NULL) {
         printf("\n");
-        temp = temp->sig;
+        print(lStr->str);
+        lStr = lStr->sig;
     }
 }
 

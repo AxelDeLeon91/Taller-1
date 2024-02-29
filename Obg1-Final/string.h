@@ -38,4 +38,5 @@ boolean validarBool(string s);
 boolean validarFormatoArchivo(string s);
 boolean validarEntero(string s);
 boolean esNumero(string s);
+char obtenerRespuestaValida(char &c);
 #endif // STRING_H_INCLUDED

@@ -173,15 +173,24 @@ void ejecutarSave(listaString lStr, ListaExp lExp) {
     lStr = lStr->sig;
     int i = stringAentero(lStr->str);
     char c;
+
     lStr = lStr->sig;
-    if(existeArchivo(lStr->str)){
-        printf("\nDesea sobreescribir?\nSI - Ingrese S\nNO- Ingrese N");
-        scanf("%c",&c);
+
+    if (existeArchivo(lStr->str)) {
+        printf("\nEl archivo ya existe, desea sobrescribirlo?\nSI - Ingrese S\nNO - Ingrese N\nRespuesta: ");
+        obtenerRespuestaValida(c);
     }
-    if(!existeArchivo(lStr->str) || c=='S'){
-        FILE *f = fopen(lStr->str, "wb");
-        guardarExpresion(darExpresion(lExp, i), f);
-        fclose(f);
+    if(!existeArchivo(lStr->str) || c == 'S' || c == 's') {
+        FILE *f = fopen(lStr->str,"wb");
+        if (f != NULL){
+            guardarExpresion(darExpresion(lExp,i),f);
+            fclose(f);
+            printf("\nExpresion %d respaldada correctamente en ", i);
+            print(lStr->str);
+        }
+    }
+    if(c== 'N' || c== 'n'){
+        printf("Operacion de respaldo de Expresion %d cancelada", darExpresion(lExp,i));
     }
 }
 

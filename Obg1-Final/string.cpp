@@ -271,3 +271,13 @@ boolean stringAboolean(string s){
     }
     return b;
 }
+
+char obtenerRespuestaValida(char &c){
+    do{
+        scanf(" %c", &c);
+        if(c!= 'S' && c!= 's' && c!= 'N' && c!= 'n'){
+            printf("Por favor, ingrese una respuesta válida ('S' o 'N'): ");
+        }
+    } while(c!= 'S' && c!= 's' && c!= 'N' && c!= 'n');
+    return c;
+}

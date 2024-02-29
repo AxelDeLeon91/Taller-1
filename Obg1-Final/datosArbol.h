@@ -14,21 +14,31 @@ typedef struct{
                  }datos;
             	}datoABB;
 
-tipoDato darDiscriminante(datoABB dat);
-void mostrarNodoAbb(datoABB dat);
-void setNOT(datoABB &dat);
-void setOR(datoABB &dat);
-void setAND(datoABB &dat);
-boolean darDatoBool(datoABB dat);
-char darOperador(datoABB dat);
+//SET
 void setParentesis(datoABB &dat,char parentesis);
 void setNumero(datoABB &dat, int i);
 void setValor(datoABB &dat, boolean b);
+void setNOT(datoABB &dat);
+void setOR(datoABB &dat);
+void setAND(datoABB &dat);
+void setDiscriminante(datoABB &dat, tipoDato tipo);
+
+//DAR
+tipoDato darDiscriminante(datoABB dat);
 int darNumero(datoABB dat);
+char darOperador(datoABB dat);
+boolean darDatoBool(datoABB dat);
+char darParentesis(datoABB dat);
+char darDatoChar(datoABB dat);
 
-void guardarNodo(datoABB dat, FILE *f);
+//MOSTRAR
+void mostrarNodoAbb(datoABB dat);
+void mostrarValor(datoABB dat);
+void mostrarOperador(datoABB dat);
+void mostrarPar(datoABB dat);
+void mostrarDiscriminante(datoABB dat);
 
-//Guardar y Levantar
+//GUARDAR Y LEVANTAR
 void guardarNodo(datoABB dat, FILE *f);
 void levantarNodo(datoABB &dat, FILE *f);
 #endif // DATOSARBOL_H_INCLUDED

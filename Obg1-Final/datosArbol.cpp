@@ -1,9 +1,22 @@
 #include <stdio.h>
 #include "datosArbol.h"
-
-tipoDato darDiscriminante(datoABB dat){
-    return dat.discriminante;
+//SET
+void setParentesis(datoABB &dat,char parentesis){
+    dat.numero=0;
+    dat.discriminante=PARENTESIS;
+    dat.datos.par=parentesis;
 }
+
+void setNumero(datoABB &dat, int i){
+    dat.numero=i;
+}
+
+void setValor(datoABB &dat, boolean b){
+    dat.discriminante=VALOR;
+    dat.numero=0;
+    dat.datos.v = b;
+}
+
 void setNOT(datoABB &dat){
     dat.numero=0;
     dat.discriminante=OPERADOR;
@@ -20,22 +33,34 @@ void setAND(datoABB &dat){
     dat.datos.op= 'A';
 }
 
-void setParentesis(datoABB &dat,char parentesis){
-    dat.numero=0;
-    dat.discriminante=PARENTESIS;
-    dat.datos.par=parentesis;
-}
-void setValor(datoABB &dat, boolean b){
-    dat.discriminante=VALOR;
-    dat.numero=0;
-    dat.datos.v = b;
+void setDiscriminante(datoABB &dat, tipoDato tipo){
+    dat.discriminante=tipo;
 }
 
-void setNumero(datoABB &dat, int i){
-    dat.numero=i;
+//DAR
+tipoDato darDiscriminante(datoABB dat){
+    return dat.discriminante;
 }
 
-//Funciona solo si es un Operador o un Parentesis
+int darNumero(datoABB dat){
+    return dat.numero;
+}
+
+char darOperador(datoABB dat){
+    return dat.datos.op;
+}
+boolean darDatoBool(datoABB dat){
+    boolean val;
+    if(dat.discriminante==VALOR){
+        val= dat.datos.v;
+    }
+    return val;
+}
+
+char darParentesis(datoABB dat){
+    return dat.datos.par;
+}
+
 char darDatoChar(datoABB dat){
     char c;
     if(dat.discriminante==PARENTESIS){
@@ -46,16 +71,27 @@ char darDatoChar(datoABB dat){
     return c;
 }
 
-boolean darDatoBool(datoABB dat){
-    boolean val;
-    if(dat.discriminante==VALOR){
-        val= dat.datos.v;
+
+//MOSTRAR
+void mostrarNodoAbb(datoABB dat){
+    printf(" ");
+        if(darDiscriminante(dat)==OPERADOR){
+           mostrarOperador(dat);
+        }else if(darDiscriminante(dat)==VALOR){
+            mostrarValor(dat);
+        }else if(darDiscriminante(dat)==PARENTESIS){
+                mostrarPar(dat);
     }
-    return val;
 }
 
-char darOperador(datoABB dat){
-    return dat.datos.op;
+void mostrarValor(datoABB dat){
+    boolean b=darDatoBool(dat);
+    if(b==TRUE){
+        printf("TRUE");
+    }else{
+        printf("FALSE");
+    }
+
 }
 
 void mostrarOperador(datoABB dat){
@@ -72,17 +108,7 @@ void mostrarOperador(datoABB dat){
     }
 }
 
-void mostrarValor(datoABB dat){
-    boolean b=darDatoBool(dat);
-    if(b==TRUE){
-        printf("TRUE");
-    }else{
-        printf("FALSE");
-    }
-
-}
-
-void mostrarPar(datoABB dat) {
+void mostrarPar(datoABB dat){
     if(dat.datos.par =='('){
         printf("(");
     }else{
@@ -100,22 +126,8 @@ void mostrarDiscriminante(datoABB dat){
     }else
         printf("\nError");
 }
-//Separar cada uno en un MostrarOperador, MostrarValor y MostrarParentesis
-void mostrarNodoAbb(datoABB dat){
-    printf(" ");
-        if(darDiscriminante(dat)==OPERADOR){
-           mostrarOperador(dat);
-        }else if(darDiscriminante(dat)==VALOR){
-            mostrarValor(dat);
-        }else if(darDiscriminante(dat)==PARENTESIS){
-                mostrarPar(dat);
-    }
-}
-int darNumero(datoABB dat){
-    return dat.numero;
-}
 
-
+//GUARDAR Y LEVANTAR
 void guardarNodo(datoABB dat, FILE *f) {
     fwrite(&dat.numero, sizeof(int), 1, f);
     fwrite(&dat.discriminante, sizeof(tipoDato), 1, f);

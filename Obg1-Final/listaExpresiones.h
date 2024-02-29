@@ -10,13 +10,18 @@ typedef struct nodoL{
 
 typedef nodoLista * ListaExp;
 
-boolean existeExpresion(ListaExp lista, int num);
+//DAR
+expresion darExpresion(ListaExp lExp, int i);
+expresion darExpresion(ListaExp lExp);
+
+//FUNCIONALIDADES
 void crearLista(ListaExp &l);
 boolean listaVacia(ListaExp l);
+boolean existeExpresion(ListaExp lista, int num);
 void insFront(ListaExp &lExp, expresion e);
-void mostrarExpresion(ListaExp lExp, int i);
-expresion darExpresion(ListaExp lExp, int i);
-expresion darPrimerExpresion(ListaExp lExp);
 
+//MOSTRAR
+void mostrarExpresion(ListaExp lExp, int i);
 void mostrarListaExp(ListaExp lExp);//PRUEBA
+
 #endif // LISTAEXPRESIONES_H_INCLUDED

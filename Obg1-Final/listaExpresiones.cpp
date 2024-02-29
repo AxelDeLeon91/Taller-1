@@ -5,19 +5,19 @@ boolean existeExpresion(ListaExp lista, int num){
     boolean existe=FALSE;
     if(lista==NULL){
         existe=FALSE;
-    }else if(num<darNumero(lista->exp)){ //Deberia ser menor
+    }else if(num<=darNumero(lista->exp)){
             existe =TRUE;
         }
     return existe;
 }
-void crearLista(ListaExp l){
-    l= NULL;
+void crearLista(ListaExp &l){
+    l=NULL;
 }
 
 boolean listaVacia(ListaExp l){
     boolean es= FALSE;
     if(l==NULL)
-        es = TRUE;
+        es=TRUE;
     return es;
 }
 
@@ -36,23 +36,38 @@ expresion darExpresion(ListaExp lExp, int i){
     }
     return lExp->exp;
 }
-
-void insFront(ListaExp &l, expresion e){
-    if(listaVacia(l)==TRUE){
-        l = new nodoLista;
-        l->exp=e;
-        l->sig=NULL;
-        l->exp.numExpresion=1;
-    }else{
-        ListaExp aux = new nodoLista;
-        aux->exp= e;
-        setNumExp(aux->exp,darNumero(l->exp)+1);
-        aux->sig= l;
-        l=aux;
-    }
+expresion darPrimerExpresion(ListaExp lExp){
+    return lExp->exp;
 }
 
+void insFront(ListaExp &lExp, expresion e) {
+    if (listaVacia(lExp) == TRUE) {
+        lExp = new nodoLista;
+        lExp->exp = e;
+        setPrimerNum(lExp->exp);
+        lExp->sig = NULL;
+    } else {
+        ListaExp aux = new nodoLista;
+        aux->exp = e;
+        setNumExp(aux->exp, darNumero(lExp->exp) + 1);
+        aux->sig = lExp;
+        lExp = aux;
+    }
 
+}
+
+//PRUEBA
+void mostrarListaExp(ListaExp lExp) {
+    printf("\nListaExp: ");
+    while (lExp != NULL) {
+        mostrarExpresion(lExp->exp);
+        lExp = lExp->sig;
+        if (lExp != NULL) {
+            printf(" -> ");
+        }
+    }
+    printf("\n");
+}
 
 
 

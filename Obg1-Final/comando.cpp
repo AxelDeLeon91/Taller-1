@@ -1,13 +1,12 @@
 #include "comando.h"
 
-void ejecutarComando(listaString lStr, ListaExp lExp){
-    int cantStr = cantStrings(lStr);
-    char c = reconocerComando(lStr->str);
+void ejecutarComando(listaString lStr, ListaExp &lExp, char c){
     switch(c){
         case 'A':
             if(cantStrings(lStr)==2){
                 if(validarAtomic(lStr)==TRUE){
                         ejecutarAtomic(lStr,lExp);
+                        break;
                 }else
                     printf("\nComando Atomic mal escrito");
             }else
@@ -18,6 +17,7 @@ void ejecutarComando(listaString lStr, ListaExp lExp){
              if(cantStrings(lStr)==2){
                 if(validarShow(lStr,lExp)==TRUE){
                         ejecutarShow(lStr,lExp);
+                        break;
                 }else
                     printf("\nExpresion no existe");
              }else
@@ -28,16 +28,19 @@ void ejecutarComando(listaString lStr, ListaExp lExp){
             if(cantStrings(lStr)==2){
                 if(validarEvaluate(lStr,lExp)==TRUE){
                         ejecutarEvaluate(lStr,lExp);
+                        break;
                 }else
                     printf("\nExpresion no existe");
+                    break;
             }else
                 printf("\nError en cantidad de parametros");
-            break;
+                break;
 
         case 'L':
             if(cantStrings(lStr)==2){
                 if(validarLoad(lStr,lExp)==TRUE){
                         ejecutarLoad(lStr,lExp);
+                        break;
                 }else
                     printf("\nComando Load mal escrito");
             }else
@@ -45,20 +48,20 @@ void ejecutarComando(listaString lStr, ListaExp lExp){
             break;
 
         case 'C':
+                printf("\nEntre compound");
                 if(cantStrings(lStr)==3){
                      if(validarCompound3(lStr,lExp)==TRUE){
                         ejecutarCompound3(lStr,lExp);
                      }
-                     else printf("Compound mal escrito");
+                     else printf("\nCompound mal escrito");
 
                 }else if(cantStrings(lStr)==4){
                         if(validarCompound4(lStr,lExp)==TRUE){
                             ejecutarCompound4(lStr,lExp);
-                        }
-                    }else printf("Compound mal escrito");
-                }else
-                    printf("\Error en cantidad de parametros");
-
+                        }else printf("\nCompound mal escrito");
+                    }else
+                        printf("\Error en cantidad de parametros");
+                break;
 
         case 'S':
                 if(cantStrings(lStr)==3){
@@ -79,9 +82,7 @@ void ejecutarComando(listaString lStr, ListaExp lExp){
             printf("\nNo ingresa ningun comando");
             break;
         }
-
     }
-}
 
 
 boolean validarOperador(string s){
@@ -109,12 +110,12 @@ boolean validarAtomic(listaString lStr){
 boolean validarCompound4(listaString lStr, ListaExp lExp){
     boolean valida=FALSE;
     listaString aux=lStr;
-    aux=aux->sig;//Avanzo porque el primer string es el comando Compound
+    aux=aux->sig;
     if(validarEntero(aux->str)==TRUE){
-        int num = stringAentero(aux->str);//Pasa un string a entero
-            if(existeExpresion(lExp,num)==TRUE){//Chequea que exista la expresion
+        int num = stringAentero(aux->str);
+            if(existeExpresion(lExp,num)==TRUE){
                 aux=aux->sig;
-                if(validarOperador(aux->str)==TRUE){//SABER SI ES AND O OR
+                if(validarOperador(aux->str)==TRUE){
                     aux=aux->sig;
                     num = stringAentero(aux->str);
                     if(existeExpresion(lExp,num)==TRUE){
@@ -132,9 +133,11 @@ boolean validarCompound3(listaString lStr, ListaExp lExp){
     aux=aux->sig;
     if(validarOperador(aux->str)==TRUE){
         aux=aux->sig;
-        int num = stringAentero(aux->str);
-        if(existeExpresion(lExp,num)==TRUE){
-            valida=TRUE;
+        if(esNumero(aux->str)){
+            int num = stringAentero(aux->str);
+            if(existeExpresion(lExp,num)==TRUE){
+                valida=TRUE;
+            }
         }
     }
     return valida;
@@ -144,7 +147,6 @@ boolean validarShow(listaString lStr, ListaExp lExp){
     boolean valida=FALSE;
     listaString aux= lStr;
     aux=aux->sig;
-    //VALIDAR QUE EL STRING SEA SOLO NUMEROS ANTES
     int num = stringAentero(aux->str);
     if(existeExpresion(lExp,num)==TRUE){
         valida=TRUE;
@@ -189,14 +191,12 @@ boolean validarLoad(listaString lStr, ListaExp lExp){
 }
 
 void ejecutarAtomic(listaString lStr, ListaExp &lExp){
-
-    //Todo esto va en una funcion no?
     arbol a;
     crear(a);
     lStr=lStr->sig;
     cargarArbolAtomic(a,lStr->str);
 
-     //Creo la expresion
+    //Creo la expresion
     expresion e;
     crearExpre(e);
 
@@ -206,7 +206,6 @@ void ejecutarAtomic(listaString lStr, ListaExp &lExp){
     //Coloco la expresion en listaExpre
     insFront(lExp,e);
 
-    printf("\n Expresion %d:",darNumero(lExp->exp));
     mostrarExpresion(lExp->exp);
 }
 
@@ -217,40 +216,54 @@ void ejecutarShow(listaString lStr, ListaExp lExp){
 }
 
 void ejecutarEvaluate(listaString lStr, ListaExp lExp){
-    AYSFGDAGHSF
+    lStr=lStr->sig;
+    expresion e= darExpresion(lExp,stringAentero(lStr->str));
+    if(evaluarArbol(darArbol(e))==TRUE){
+        printf("La expresion vale TRUE");
+    }else
+        printf("La expresion vale FALSE");
 }
 void ejecutarLoad(listaString lStr, ListaExp &lExp){
-    //FALTA LABURAR
+    expresion exp;
+    crearExpre(exp);
+    lStr=lStr->sig;
+    FILE * f=fopen(lStr->str, "rb");
+    levantarExpresion(exp,f);
+    insFront(lExp,exp);
 }
-void ejecutarSave(listaString lStr, ListaExp lExp){
-    //FALTA LABURAR
+void ejecutarSave(listaString lStr, ListaExp lExp) {
+    lStr = lStr->sig;
+    int i = stringAentero(lStr->str);
+
+    lStr = lStr->sig;
+    FILE *f = fopen(lStr->str, "wb");
+    guardarExpresion(darExpresion(lExp, i), f);
+    fclose(f);
 }
+
 void ejecutarCompound3(listaString lStr, ListaExp &lExp){
     lStr=lStr->sig;
+
     arbol a;
     crear(a);
-    a = new nodoABB;
-    setNOT(a->info);
 
-    lStr=lStr->sig;
-
+    lStr=lStr->sig; //Avanzo al entero
     int i = stringAentero(lStr->str);
     expresion e = darExpresion(lExp,i);
-    cargarArbolCompoundNOT(a,e);
-
+    arbol abb=copiarArbol(darArbol(e));
+    cargarArbolCompoundNOT(a,abb);
     expresion j;
     crearExpre(j);
     j.abbExpresion=a;
     insFront(lExp,j);
-
-    printf("\n Expresion %d:",darNumero(lExp->exp));
-    mostrarExpresion(lExp->exp);
+    mostrarExpresion(darPrimerExpresion(lExp));
 }
 
 
 
 //Hacer funcion avanzarListaString?
 void ejecutarCompound4(listaString lStr, ListaExp &lExp){
+    printf("\nEntre ejecutarC4A");
     lStr=lStr->sig;
     arbol a;
     crear(a);
@@ -258,8 +271,6 @@ void ejecutarCompound4(listaString lStr, ListaExp &lExp){
 
     int i=stringAentero(lStr->str);
     expresion e1 = darExpresion(lExp,i);
-
-
     lStr=lStr->sig;
     datoABB dat;
     dat.discriminante=OPERADOR;
@@ -269,19 +280,17 @@ void ejecutarCompound4(listaString lStr, ListaExp &lExp){
             setAND(dat);
         }
 
-
     lStr=lStr->sig;
     int j=stringAentero(lStr->str);
     expresion e2 = darExpresion(lExp,j);
-
-    juntarArboles(e1.abbExpresion,e2.abbExpresion,dat,a);
-
+    arbol abb = copiarArbol(darArbol(e1));
+    arbol abb2= copiarArbol(darArbol(e2));
+    juntarArboles(abb,abb2,dat,a);
     expresion e;
     crearExpre(e);
     e.abbExpresion=a;
 
     insFront(lExp,e);
 
-    printf("\n Expresion %d:",darNumero(lExp->exp));
     mostrarExpresion(lExp->exp);
 }

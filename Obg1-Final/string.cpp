@@ -128,9 +128,17 @@ char saberOperador(string palabra) {
     return resultado;
 }
 
-char reconocerComando(string palabra) {
-    char resultado='X';
+void mayusMinus(string &str) {
+    for (int i=0; str[i]!='\0';i++){
+        if (str[i] >= 'A' && str[i] <= 'Z') {
+            str[i] = str[i]+32;
+        }
+    }
+}
 
+char reconocerComando(string palabra) {
+    mayusMinus(palabra);
+    char resultado;
     if (streq(palabra, "atomic")==TRUE){
         resultado= 'A';
     }else if(streq(palabra,"compound")==TRUE){
@@ -193,7 +201,17 @@ int stringAentero(string s){
     }
     return resu;
 }
-
+boolean esNumero(string s) {
+    boolean es=TRUE;
+    int i = 0;
+    while (s[i] != '\0') {
+        if (!(s[i] >= '0' && s[i] <= '9')) {
+            es=FALSE;
+        }
+        i++;
+    }
+    return es;
+}
 boolean validarBool(string s){
     boolean valida=FALSE;
     if(streq(s,"false")==TRUE){

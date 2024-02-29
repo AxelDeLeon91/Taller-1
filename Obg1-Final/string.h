@@ -18,8 +18,8 @@ boolean strmen(string s1, string s2);
 boolean streq(string s1, string s2);
 char reconocerComando(string lStr);
 
-//Pasa un string de minuscula a mayuscula
-void minusMayus(string &str);
+//Pasa las letras mayusculas a minuscula
+void mayusMinus(string &str);
 
 //Reconoce si el string es mayus o minus: TRUE= MAYUS, FALSE = MINUS
 boolean esMayus(string str);
@@ -37,5 +37,5 @@ int stringAentero(string s);
 boolean validarBool(string s);
 boolean validarFormatoArchivo(string s);
 boolean validarEntero(string s);
-
+boolean esNumero(string s);
 #endif // STRING_H_INCLUDED

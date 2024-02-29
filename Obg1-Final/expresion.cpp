@@ -5,24 +5,41 @@ int darNumero(expresion e){
     return e.numExpresion;
 }
 
-void crearExpre(expresion e){
+void crearExpre(expresion &e){
     e.numExpresion=0;
     e.abbExpresion= NULL;
 }
 void mostrarExpresion(expresion e){
-    printf("Expresion %d:", darNumero(e));
+    printf("\nExpresion %d:", darNumero(e));
     mostrarArbolRecu(e.abbExpresion);
 }
-
+void setPrimerNum(expresion &e){
+    e.numExpresion=1;
+}
 void setNumExp(expresion &e, int i){
     e.numExpresion=i;
 }
 
-void cargarArbolCompoundNOT(arbol &a,expresion e){
-    a->hder=darArbol(e);
+void cargarArbolCompoundNOT(arbol &a,arbol abb){
+    a = new nodoABB;
+    setNOT(a->info);
+
+    a->hder=abb;
+    a->hizq==NULL;
     colocarParentesis(a);
 }
 
 arbol darArbol(expresion e){
     return e.abbExpresion;
+}
+
+
+void guardarExpresion(FILE *f, expresion &exp) {
+    fwrite(&exp.numExpresion, sizeof(int), 1, f);
+    guardarArbol(darArbol(exp), f);
+}
+
+void levantarExpresion(expresion &exp, FILE *f) {
+    fread(&exp.numExpresion, sizeof(int), 1, f);
+    levantarArbol(exp.abbExpresion, f);
 }

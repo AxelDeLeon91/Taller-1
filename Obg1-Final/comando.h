@@ -4,7 +4,7 @@
 #include "listaExpresiones.h"
 #include "listaString.h"
 
-void ejecutarComando(listaString lStr, ListaExp lExp);
+void ejecutarComando(listaString lStr, ListaExp &lExp, char c);
 boolean validarAtomic(listaString lStr);
 boolean validarCompound3(listaString lStr, ListaExp lExp);
 boolean validarCompound4(listaString lStr, ListaExp lExp);

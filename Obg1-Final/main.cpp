@@ -7,6 +7,7 @@ int main()
     crearLista(lExp);
     listaString lStr;
     crearListaString(lStr);
+    char c;
     do{
         limpiarLista(lStr);
         string s;
@@ -14,12 +15,10 @@ int main()
         printf("\nIngrese el comando a ejecutar: ");
         scan(s);
         separarStringEnLista(s,lStr);
-        imprimirLista(lStr); //PRUEBA
-        if(cantStrings(lStr)>=1 && cantStrings(lStr)<=4){
-           ejecutarComando(lStr,lExp);
-        }else
-            printf("\nComando invalido");
 
-    }while(reconocerComando(lStr->str)!='E');
+        c=reconocerComando(lStr->str);
+        ejecutarComando(lStr,lExp,c);
+
+    }while(c!= 'X');
 
 }

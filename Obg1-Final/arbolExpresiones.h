@@ -26,4 +26,13 @@ void mostrarArbolRecu(arbol a);
 void cargarArbolAtomic(arbol &a, string s);
 datoABB darInfo(arbol a);
 boolean evaluarArbol(arbol a);
+void mostrarDiscriminante(datoABB dat);
+arbol copiarArbol(arbol original);
+
+//Guardar y Levantar
+void guardarArbolAux(arbol a, FILE * f);
+void guardarArbol(arbol a, string s);
+void insertarNodo(arbol &a, nodoABB nuevoNodo);
+void levantarArbol(arbol &a, FILE *f);
+
 #endif // ARBOLEXPRESIONES_H_INCLUDED

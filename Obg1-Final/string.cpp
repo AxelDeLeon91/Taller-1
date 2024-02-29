@@ -86,7 +86,7 @@ void print(string s){
     }
 }
 
-boolean strmen(string s1, string s2) {
+boolean strmen(string s1, string s2){
     boolean encontre = FALSE, menor = FALSE;
     int i = 0;
     while ((!encontre) && (s1[i] != '\0') && (s2[i] != '\0')) {
@@ -101,20 +101,20 @@ boolean strmen(string s1, string s2) {
     return menor;
 }
 
-boolean streq(string s1, string s2) {
+boolean streq(string s1, string s2){ //analiza si s1 y s2 son iguales
     int i = 0;
     boolean iguales = TRUE;
-    while (iguales && (s1[i] != '\0') && (s2[i] != '\0')) {
-        if (s1[i] != s2[i])
+    while (iguales && (s1[i]!= '\0') && (s2[i]!= '\0')) {
+        if (s1[i]!= s2[i])
             iguales = FALSE;
         i++;
     }
-    if ((s1[i] != '\0') || (s2[i] != '\0'))
+    if ((s1[i]!= '\0') || (s2[i]!= '\0'))
         iguales = FALSE;
     return iguales;
 }
 
-char saberOperador(string palabra) {
+char saberOperador(string palabra){ //recibe el string y devuelve su operador
     char resultado = 'E';
     if(streq(palabra, "AND") == TRUE) {
         resultado = 'A';
@@ -128,15 +128,15 @@ char saberOperador(string palabra) {
     return resultado;
 }
 
-void mayusMinus(string &str) {
+void mayusMinus(string &str){//Recibe un string str y lo pasa a minuscula:  AtOmiC -> atomic
     for (int i=0; str[i]!='\0';i++){
-        if (str[i] >= 'A' && str[i] <= 'Z') {
+        if (str[i] >= 'A' && str[i] <= 'Z'){
             str[i] = str[i]+32;
         }
     }
 }
 
-char reconocerComando(string palabra) {
+char reconocerComando(string palabra){ //Utilizado para reconocer el comando ingresado por consola
     mayusMinus(palabra);
     char resultado;
     if (streq(palabra, "atomic")){
@@ -157,8 +157,7 @@ char reconocerComando(string palabra) {
     return resultado;
 }
 
-
-void charAString(char c, string &s){
+void charAString(char c, string &s){//Recibe un char y devuelve un string
     switch(c){
         case 'A':
                 strcop(s,"AND");
@@ -180,7 +179,7 @@ void charAString(char c, string &s){
     }
 }
 
-void booleanAString(boolean b, string &s){
+void booleanAString(boolean b, string &s){//Recibe un valor booleano y lo devuelve en un string
     if(b==TRUE){
         strcop(s,"TRUE");
     }else if(b==FALSE){
@@ -188,11 +187,9 @@ void booleanAString(boolean b, string &s){
     }
 }
 
-//Sirve solo para POSITIVOS, esto lo tendria que chequear antes??
-int stringAentero(string s){
+int stringAentero(string s){//Recibe un string y devuelve su valor entero
     int resu=0;
     int i=0;
-
     while(s[i]!='\0'){
         if(s[i]>='0' && s[i]<='9'){
             resu = resu * 10+(s[i]-48);
@@ -201,6 +198,7 @@ int stringAentero(string s){
     }
     return resu;
 }
+
 boolean esNumero(string s) {
     boolean es=TRUE;
     int i = 0;
@@ -212,7 +210,8 @@ boolean esNumero(string s) {
     }
     return es;
 }
-boolean validarBool(string s){
+
+boolean validarBool(string s){//Valida que el boolean este bien escrito
     boolean valida=FALSE;
     if(streq(s,"false")==TRUE){
        valida=TRUE;
@@ -222,8 +221,7 @@ boolean validarBool(string s){
     return valida;
     }
 
-
-boolean validarEntero(string s){
+boolean validarEntero(string s){ //Valida que en el string S solo exitan numeros enteros, nada de caracteres
     boolean valida= TRUE;
     if (s[0] == '\0') {
         valida= FALSE;
@@ -235,23 +233,22 @@ boolean validarEntero(string s){
             }
         }
     }
-
     return valida;
 }
 
-boolean esLetra(char c) {
+boolean esLetra(char c){//Chequea que el char sea una letra.
     boolean es = FALSE;
-    if ((c>='a' && c<='z') || (c>='A' && c<='Z')){
+    if((c>='a' && c<='z') || (c>='A' && c<='Z')){
         es = TRUE;
     }
     return es;
 }
 
-boolean validarFormatoArchivo(string s) {
+boolean validarFormatoArchivo(string s){//Utilizada en ValidarLoad y validarSave para saber si el archivo se encuentra bien escrito.
     boolean valida = FALSE;
     int largo = strlar(s);
     if(largo>4) {
-        if (s[largo-4]=='.' && s[largo-3]=='d' && s[largo-2]=='a' && s[largo-1]=='t'){  //estaban mal las posiciones (considerar que la ultima es el \0)
+        if (s[largo-4]=='.' && s[largo-3]=='d' && s[largo-2]=='a' && s[largo-1]=='t'){
             for (int i = 0; i < largo - 4; i++) {
                 if (esLetra(s[i])==TRUE){
                     valida=TRUE;
@@ -262,7 +259,7 @@ boolean validarFormatoArchivo(string s) {
     return valida;
 }
 
-boolean stringAboolean(string s){
+boolean stringAboolean(string s){ //Recibe el string s y devuelve su valor boolean
     boolean b= FALSE;
     if(streq(s,"false")){
         b=FALSE;
@@ -272,7 +269,7 @@ boolean stringAboolean(string s){
     return b;
 }
 
-char obtenerRespuestaValida(char &c){
+char obtenerRespuestaValida(char &c){ //Utilizada en EjecutarSave para recibir una respuesta valida sobre soobresscribir
     do{
         scanf(" %c", &c);
         if(c!= 'S' && c!= 's' && c!= 'N' && c!= 'n'){

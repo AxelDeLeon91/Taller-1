@@ -87,39 +87,30 @@ void ejecutarComando(listaString lStr, ListaExp &lExp, char c){
     }
 
 void ejecutarAtomic(listaString lStr, ListaExp &lExp){
-    arbol a;
-    crear(a);
-    lStr=lStr->sig;
-    cargarArbolAtomic(a,lStr->str);
-
-    //Creo la expresion
+    arbol a; //Declaro el arbol
+    crear(a); //Creo el arbol
+    lStr=lStr->sig;//
+    cargarArbolAtomic(a,lStr->str);//Cargo el arbol con el valor
     expresion e;
-    crearExpre(e);
-
-    //Coloco el arbol en la expresion
-    setArbol(e,a);
-
-    //Coloco la expresion en listaExpre
-    insFront(lExp,e);
-
+    crearExpre(e);//Creo expresion
+    setArbol(e,a);//Seteo arbol en la exp
+    insFront(lExp,e);//Insfront en listaExp
     mostrarExpresion(lExp->exp);
 }
 
 void ejecutarCompound3(listaString lStr, ListaExp &lExp){
     lStr=lStr->sig;
-
-    arbol a;
-    crear(a);
-
-    lStr=lStr->sig; //Avanzo al entero
-    int i = stringAentero(lStr->str);
-    expresion e = darExpresion(lExp,i);
-    arbol abb=copiarArbol(darArbol(e));
-    cargarArbolCompoundNOT(a,abb);
+    arbol a;//Declaro el arbol
+    crear(a);//Creo el arbol
+    lStr=lStr->sig;
+    int i = stringAentero(lStr->str); //Paso el #expresion recibido mediante string a un entero
+    expresion e = darExpresion(lExp,i); //Creo la expresion y le asigno la expresion.
+    arbol abb=copiarArbol(darArbol(e));//Copio el arbol en un arbol auxiliar
+    cargarArbolCompoundNOT(a,abb);//Cargo el arbol con el NOT y el valor/expresion
     expresion j;
     crearExpre(j);
-    setArbol(j,a);
-    insFront(lExp,j);
+    setArbol(j,a);//Seteo arbol en la exp
+    insFront(lExp,j);//Insfront en listaExp
     mostrarExpresion(darExpresion(lExp));
 }
 
@@ -128,36 +119,33 @@ void ejecutarCompound4(listaString lStr, ListaExp &lExp){
     arbol a;
     crear(a);
     a = new nodoABB;
-
     int i=stringAentero(lStr->str);
     expresion e1 = darExpresion(lExp,i);
     lStr=lStr->sig;
     datoABB dat;
-    setDiscriminante(dat,OPERADOR);
-
-    if(saberOperador(lStr->str)== 'O'){
+    setDiscriminante(dat,OPERADOR);//Seteo el discrimnante como OPERADOR
+    if(saberOperador(lStr->str)== 'O'){//Averiguo si es operador OR o AND
         setOR(dat);
     }else if(saberOperador(lStr->str)== 'A'){
             setAND(dat);
         }
-
     lStr=lStr->sig;
     int j=stringAentero(lStr->str);
     expresion e2 = darExpresion(lExp,j);
     arbol abb = copiarArbol(darArbol(e1));
     arbol abb2= copiarArbol(darArbol(e2));
-    juntarArboles(abb,abb2,dat,a);
+    juntarArboles(abb,abb2,dat,a); //Junto ambos arboles auxiliares con la raiz deseada
     expresion e;
     crearExpre(e);
-    setArbol(e,a);
-    insFront(lExp,e);
+    setArbol(e,a);//Seteo arbol en la exp
+    insFront(lExp,e);//Insfront en listaExp
     mostrarExpresion(lExp->exp);
 }
 
 void ejecutarEvaluate(listaString lStr, ListaExp lExp){
     lStr=lStr->sig;
     expresion e= darExpresion(lExp,stringAentero(lStr->str));
-    if(evaluarArbol(darArbol(e))==TRUE){
+    if(evaluarArbol(darArbol(e))){  //Evalua el arbol
         printf("La Expresion %d vale:  TRUE", darNumero(e));
     }else
         printf("La Expresion %d vale:  FALSE",darNumero(e));
@@ -173,24 +161,22 @@ void ejecutarSave(listaString lStr, ListaExp lExp) {
     lStr = lStr->sig;
     int i = stringAentero(lStr->str);
     char c;
-
     lStr = lStr->sig;
-
-    if (existeArchivo(lStr->str)) {
+    if (existeArchivo(lStr->str)){//Consulto existencia del archivo en disco
         printf("\nEl archivo ya existe, desea sobrescribirlo?\nSI - Ingrese S\nNO - Ingrese N\nRespuesta: ");
-        obtenerRespuestaValida(c);
+        obtenerRespuestaValida(c);//Scanea C y se fija si esta bien escrito, repregunta hasta tener respuesta valida
     }
-    if(!existeArchivo(lStr->str) || c == 'S' || c == 's') {
+    if(!existeArchivo(lStr->str) || c== 'S' || c== 's'){//Si no existe archivo o quiere sobreescribir, ejecuta el guardar expresion
         FILE *f = fopen(lStr->str,"wb");
         if (f != NULL){
             guardarExpresion(darExpresion(lExp,i),f);
             fclose(f);
-            printf("\nExpresion %d respaldada correctamente en ", i);
+            printf("\nExpresion %d respaldada correctamente en ",i);
             print(lStr->str);
         }
     }
-    if(c== 'N' || c== 'n'){
-        printf("Operacion de respaldo de Expresion %d cancelada", darExpresion(lExp,i));
+    if(c== 'N' || c== 'n'){ //Si no quiere soobrescribir, muestra mensaje de operacion cancelada
+        printf("Operacion de respaldo de Expresion %d cancelada",i);
     }
 }
 
@@ -205,7 +191,7 @@ void ejecutarLoad(listaString lStr, ListaExp &lExp){
 }
 
 //FUNCIONALIDADES
-boolean validarOperador(string s){
+boolean validarOperador(string s){ //Valida que el string ingresado este en mayuscula y sea uno de los existentes
     boolean valida=FALSE;
     if(streq(s,"AND") || streq(s,"OR") || streq(s,"NOT")){
         valida=TRUE;
@@ -213,7 +199,7 @@ boolean validarOperador(string s){
     return valida;
 }
 
-boolean validarAtomic(listaString lStr){
+boolean validarAtomic(listaString lStr){ // valida que el valor booleano este bien escrito y en minuscula
     boolean valida= FALSE;
     listaString aux=lStr;
     aux=aux->sig;
@@ -223,7 +209,7 @@ boolean validarAtomic(listaString lStr){
     return valida;
 }
 
-boolean validarCompound3(listaString lStr, ListaExp lExp){
+boolean validarCompound3(listaString lStr, ListaExp lExp){ //Valida que el formato del compound con 3 strings sea: compound NOT valor
     boolean valida= FALSE;
     listaString aux=lStr;
     aux=aux->sig;
@@ -239,7 +225,7 @@ boolean validarCompound3(listaString lStr, ListaExp lExp){
     return valida;
 }
 
-boolean validarCompound4(listaString lStr, ListaExp lExp){
+boolean validarCompound4(listaString lStr, ListaExp lExp){//Valida que el formato del compound con 4 strings sea: compound #expresion AND/OR #expresion
     boolean valida=FALSE;
     listaString aux=lStr;
     aux=aux->sig;
@@ -259,7 +245,7 @@ boolean validarCompound4(listaString lStr, ListaExp lExp){
     return valida;
 }
 
-boolean validarEvaluate(listaString lStr, ListaExp lExp){
+boolean validarEvaluate(listaString lStr, ListaExp lExp){ //Valida que el formato del evaluate sea: evaluate #expresion
     boolean valida=FALSE;
     listaString aux=lStr;
     aux=aux->sig;
@@ -272,7 +258,7 @@ boolean validarEvaluate(listaString lStr, ListaExp lExp){
     return valida;
 }
 
-boolean validarShow(listaString lStr, ListaExp lExp){
+boolean validarShow(listaString lStr, ListaExp lExp){ //Valida que el formato del evaluate sea:
     boolean valida=FALSE;
     listaString aux=lStr;
     aux=aux->sig;
@@ -285,10 +271,9 @@ boolean validarShow(listaString lStr, ListaExp lExp){
     return valida;
 }
 
-boolean validarSave(listaString lStr, ListaExp lExp){
+boolean validarSave(listaString lStr, ListaExp lExp){ //Valida que el formato del save sea: save #expresion nombrearchivo.dat
     boolean valida=FALSE;
     lStr = lStr->sig;
-    //VALIDAR QUE EL STRING SEA SOLO NUMEROS ANTES
     if(esNumero(lStr->str)){
         int num = stringAentero(lStr->str);
         if(existeExpresion(lExp,num)==TRUE){
@@ -301,7 +286,7 @@ boolean validarSave(listaString lStr, ListaExp lExp){
 
     return valida;
 }
-boolean validarLoad(listaString lStr, ListaExp lExp){
+boolean validarLoad(listaString lStr, ListaExp lExp){ //Valida que el formato del load sea: load nombrearchivo.dat
     boolean valida=FALSE;
     listaString aux=lStr;
     aux=aux->sig;
@@ -315,7 +300,7 @@ boolean validarLoad(listaString lStr, ListaExp lExp){
 }
 
 //FUNCIONALIDADES
-boolean existeArchivo(string s) {
+boolean existeArchivo(string s) { //Chequea la existencia del archivo en disco.
     boolean existe=FALSE;
     FILE *f = fopen(s, "r");
 

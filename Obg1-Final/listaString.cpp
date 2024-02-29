@@ -1,73 +1,57 @@
 #include <stdio.h>
 #include "listaString.h"
 
-void crearListaString(listaString &lStr){
+void crearListaString(listaString &lStr){//Crea la ListaString
     lStr = NULL;
 }
 
-void insBack(listaString &lista, string s) {
-
-    if (lista == NULL) {
+void insBack(listaString &lista, string s){//Inserta el string s al final de listaString
+    if (lista == NULL){
         lista = new nodoString;
-        strcop(lista->str, s);
+        strcop(lista->str,s);
         lista->sig = NULL;
-    } else {
+    }else{
         listaString aux = lista;
-        while (aux->sig != NULL) {
+        while (aux->sig!= NULL){
             aux = aux->sig;
         }
         aux->sig = new nodoString;
-        strcop(aux->sig->str, s);
+        strcop(aux->sig->str,s);
         aux->sig->sig = NULL;
     }
 }
-void avanzarLstr(listaString &lStr){
+
+void avanzarLstr(listaString &lStr){ //Avanza lStr a su siguiente nodo
     lStr=lStr->sig;
 }
 
-// Función para separar el string en una lista de strings
-void separarStringEnLista(string original, listaString &lstr) {
+void separarStringEnLista(string original, listaString &lstr){// Función para separar el string en una lista de strings
     listaString listaAux = NULL;
     string palabra;
     strcrear(palabra);
     int i = 0;
-
-    while (original[i] != '\0') {
-        // Busco el inicio de alguna palabra
-        while (original[i] == ' ' && original[i] != '\0') {
+    while (original[i] != '\0'){
+        while (original[i]== ' ' && original[i]!= '\0'){// Busco el inicio de alguna palabra
             i++;
         }
-
-        // Cuento su largo
         int j = 0;
-        while (original[i + j] != ' ' && original[i + j] != '\0') {
+        while (original[i + j]!= ' ' && original[i + j]!= '\0'){// Cuento su largo
             j++;
         }
-
-        // Copio la palabra de original en una palabra aux
-        if (j > 0){
+        if (j>0){
             palabra = new char [j+1];
-
-            //La copio
-            for (int k = 0; k < j; k++) {
-                palabra[k] = original[i + k];
+            for (int k= 0; k<j; k++) {
+                palabra[k] = original[i+k]; //Copio original en palabra
             }
-            palabra[j] = '\0';
-
-            // INSBACK en listaAux
-            insBack(listaAux, palabra);
+            palabra[j]= '\0';
+            insBack(listaAux, palabra);// INSBACK en listaAux
         }
-
-        // Avanzar al próximo caracter en string Original
-        i += j;
+        i += j;// Avanzar al próximo caracter en string Original
     }
-
-    // Asignar la listaAux a lstr
-    lstr = listaAux;
+    lstr = listaAux; // Asignar la listaAux a lstr
 }
 
-// Función para imprimir la lista de strings
-void imprimirLista(listaString lStr){
+void imprimirLista(listaString lStr){ // Función para imprimir la lista de strings
     while (lStr != NULL) {
         printf("\n");
         print(lStr->str);
@@ -75,8 +59,7 @@ void imprimirLista(listaString lStr){
     }
 }
 
-// Función para liberar la memoria de la lista de strings
-void limpiarLista(listaString &lstr){
+void limpiarLista(listaString &lstr){ // Función para liberar la memoria de la lista de strings
     while(lstr != NULL){
         listaString aux = lstr;
         lstr = aux->sig;
@@ -84,7 +67,7 @@ void limpiarLista(listaString &lstr){
     }
 }
 
-int cantStrings(listaString lStr){
+int cantStrings(listaString lStr){ //Devuelve la cantidad de string que hay en lStr, se utiliza para el chequeo de los comandos
     int cant=0;
     while(lStr!=NULL){
         cant++;

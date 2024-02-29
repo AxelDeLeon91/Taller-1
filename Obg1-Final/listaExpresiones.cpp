@@ -2,30 +2,30 @@
 #include "listaExpresiones.h"
 
 //DAR
-expresion darExpresion(ListaExp lExp, int i){
+expresion darExpresion(ListaExp lExp, int i){ //Devuelve la expresion i de la listaExp
     while(darNumero(lExp->exp)!=i){
         lExp=lExp->sig;
     }
     return darExpresion(lExp);
 }
 
-expresion darExpresion(ListaExp lExp){
+expresion darExpresion(ListaExp lExp){ //Devuelve la expresion a la que apunta lExp
     return lExp->exp;
 }
 
 //FUNCIONALIDADES
-void crearLista(ListaExp &l){
+void crearLista(ListaExp &l){ //Crea la listaExp
     l=NULL;
 }
 
-boolean listaVacia(ListaExp l){
+boolean listaVacia(ListaExp l){ //Devuelve TRUE si lExp esta vacia
     boolean es= FALSE;
     if(l==NULL)
         es=TRUE;
     return es;
 }
 
-boolean existeExpresion(ListaExp lista, int num){
+boolean existeExpresion(ListaExp lista, int num){ //Chequea si existe la expresion num en lExp
     boolean existe=FALSE;
     if(lista==NULL){
         existe=FALSE;
@@ -35,7 +35,7 @@ boolean existeExpresion(ListaExp lista, int num){
     return existe;
 }
 
-void insFront(ListaExp &lExp, expresion e) {
+void insFront(ListaExp &lExp, expresion e){ //Inserta la expresion e al principio de lExp, asignandole un valor +1 a la ex
     if (listaVacia(lExp) == TRUE) {
         lExp = new nodoLista;
         lExp->exp = e;
@@ -52,21 +52,20 @@ void insFront(ListaExp &lExp, expresion e) {
 }
 
 //MOSTRAR
-void mostrarExpresion(ListaExp lExp,int i){
+void mostrarExpresion(ListaExp lExp,int i){ //Busca la expresion I en lExp y la muestra por pantalla
     while(darNumero(lExp->exp)!=i){
         lExp=lExp->sig;
     }
-
     mostrarExpresion(lExp->exp);
 }
 
 //PRUEBA
-void mostrarListaExp(ListaExp lExp) {
+void mostrarListaExp(ListaExp lExp){ //Para probar el programa, muestra toda la lExp
     printf("\nListaExp: ");
-    while (lExp != NULL) {
+    while(lExp != NULL){
         mostrarExpresion(lExp->exp);
         lExp = lExp->sig;
-        if (lExp != NULL) {
+        if (lExp!= NULL){
             printf(" -> ");
         }
     }

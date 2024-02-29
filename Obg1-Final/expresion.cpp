@@ -1,18 +1,19 @@
 #include <stdio.h>
 #include "expresion.h"
-
+//DAR
 int darNumero(expresion e){
     return e.numExpresion;
 }
 
-void crearExpre(expresion &e){
-    e.numExpresion=0;
-    e.abbExpresion= NULL;
+arbol darArbol(expresion e){
+    return e.abbExpresion;
 }
-void mostrarExpresion(expresion e){
-    printf("\nExpresion %d:", darNumero(e));
-    mostrarArbolRecu(e.abbExpresion);
+
+//SET
+void setArbol(expresion &e, arbol a){
+    e.abbExpresion= a;
 }
+
 void setPrimerNum(expresion &e){
     e.numExpresion=1;
 }
@@ -20,21 +21,22 @@ void setNumExp(expresion &e, int i){
     e.numExpresion=i;
 }
 
-void cargarArbolCompoundNOT(arbol &a,arbol abb){
-    a = new nodoABB;
-    setNOT(a->info);
-
-    a->hder=abb;
-    a->hizq==NULL;
-    colocarParentesis(a);
+//FUNCIONALIDADES
+void crearExpre(expresion &e){
+    e.numExpresion=0;
+    e.abbExpresion= NULL;
 }
 
-arbol darArbol(expresion e){
-    return e.abbExpresion;
+//MOSTRAR
+void mostrarExpresion(expresion e){
+    printf("\nExpresion %d:", darNumero(e));
+    mostrarArbolRecu(e.abbExpresion);
 }
 
+//CARGAR
 
-void guardarExpresion(FILE *f, expresion &exp) {
+//GUARDAR Y LEVANTAR
+void guardarExpresion(expresion &exp, FILE * f) {
     fwrite(&exp.numExpresion, sizeof(int), 1, f);
     guardarArbol(darArbol(exp), f);
 }

@@ -139,19 +139,19 @@ void mayusMinus(string &str) {
 char reconocerComando(string palabra) {
     mayusMinus(palabra);
     char resultado;
-    if (streq(palabra, "atomic")==TRUE){
+    if (streq(palabra, "atomic")){
         resultado= 'A';
-    }else if(streq(palabra,"compound")==TRUE){
+    }else if(streq(palabra,"compound")){
         resultado= 'C';
-    }else if(streq(palabra,"show")==TRUE){
+    }else if(streq(palabra,"show")){
         resultado=  'H';
-    }else if(streq(palabra,"evaluate")==TRUE){
+    }else if(streq(palabra,"evaluate")){
         resultado=  'E';
-    }else if(streq(palabra,"save")==TRUE){
+    }else if(streq(palabra,"save")){
         resultado=  'S';
-    }else if(streq(palabra,"load")==TRUE){
+    }else if(streq(palabra,"load")){
         resultado=  'L';
-    }else if(streq(palabra,"exit")==TRUE){
+    }else if(streq(palabra,"exit")){
         resultado=  'X';
     }
     return resultado;

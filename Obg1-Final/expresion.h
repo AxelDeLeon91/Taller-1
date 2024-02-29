@@ -9,27 +9,15 @@ typedef struct{
         }expresion;
 
 
-//DAR
 int darNumero(expresion e);
+void crearExpre(expresion &e);
+void mostrarExpresion(expresion e);
+void setNumExp(expresion &e, int i);
+void cargarArbolCompoundNOT(arbol &a,arbol abb);
+void setPrimerNum(expresion &e);
 arbol darArbol(expresion e);
 
-//SET
-void setArbol(expresion &e, arbol a);
-void setPrimerNum(expresion &e);
-void setNumExp(expresion &e, int i);
-
-//FUNCIONALIDADES
-void crearExpre(expresion &e);
-
-//MOSTRAR
-void mostrarExpresion(expresion e);
-
-//CARGAR
-
-
-
-
-//GUARDAR Y LEVANTAR
-void guardarExpresion(expresion &exp, FILE *f);
+//Guardar y Levantar
+void guardarExpresion(expresion exp, FILE *f);
 void levantarExpresion(expresion &exp, FILE *f);
 #endif // EXPRESION_H_INCLUDED

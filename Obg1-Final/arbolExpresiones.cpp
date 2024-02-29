@@ -1,12 +1,25 @@
 #include <stdio.h>
+
 #include "arbolExpresiones.h"
-//FUNCIONALIDADES
+
 void crear(arbol &a){
     a=NULL;
 }
 
 boolean vacio(arbol a){
     return (boolean)(a == NULL);
+}
+
+arbol darRaiz(arbol a){
+    return a;
+}
+
+arbol hijoIzq(arbol a){
+    return a->hizq;
+}
+
+arbol hijoDer(arbol a){
+    return a->hder;
 }
 
 void numerarArbol(arbol &a){
@@ -24,6 +37,7 @@ void numerarRecursivo(arbol a, int &contador){
 }
 
 void colocarParentesis(arbol &a){
+    printf("\nEntre colocarPar");
     arbol aux=a;
     colocarParIzq(aux);
     colocarParDer(aux);
@@ -54,22 +68,6 @@ void colocarParDer(arbol &a){
         }
     }
 }
-
-boolean evaluarArbol(arbol a){
-    if(darDiscriminante(darInfo(a))==VALOR){
-        return darDatoBool(darInfo(a));
-    }else if(darDiscriminante(darInfo(a))==OPERADOR){
-            if(darOperador(darInfo(a))=='A'){
-               return (boolean) (evaluarArbol(a->hizq) && evaluarArbol(a->hder));//Aca iria la multiplicacion
-            }else if(darOperador(darInfo(a))== 'O'){
-                    return (boolean) (evaluarArbol(a->hizq) || evaluarArbol(a->hder)); //Aca iria la suma topeada en 1
-                     }
-            else//CASO NOT
-                return (boolean) !evaluarArbol(a->hder);
-    }
-    return FALSE;
-}
-
 arbol copiarArbol(arbol original) {
     if (original == NULL) {
         return NULL;
@@ -83,22 +81,8 @@ arbol copiarArbol(arbol original) {
     return nuevo;
 }
 
-void insertarNodo(arbol &a, nodoABB nuevoNodo) {
-    if (a == NULL){
-        a = new nodoABB;
-        a->info = nuevoNodo.info;
-        a->hizq = NULL;
-        a->hder = NULL;
-    }else{
-        if(darNumero(nuevoNodo.info)<darNumero(a->info)) {
-            insertarNodo(a->hizq,nuevoNodo);
-        }else{
-            insertarNodo(a->hder,nuevoNodo);
-        }
-    }
-}
-
 void juntarArboles(arbol a, arbol b, datoABB dat, arbol &c) {
+    printf("\nEntre Juntar Arboles");
     c = new nodoABB;
     c->info = dat;
     c->hizq = a;
@@ -106,24 +90,14 @@ void juntarArboles(arbol a, arbol b, datoABB dat, arbol &c) {
     colocarParentesis(c);
 }
 
-//DAR
-arbol darRaiz(arbol a){
-    return a;
+void cargarArbolAtomic(arbol &a, string s){
+    a=new nodoABB;
+    setValor(a->info,stringAboolean(s));
+    a->hder=NULL;
+    a->hizq=NULL;
 }
 
-arbol hijoIzq(arbol a){
-    return a->hizq;
-}
-
-arbol hijoDer(arbol a){
-    return a->hder;
-}
-
-datoABB darInfo(arbol a){
-    return a->info;
-}
-
-//MOSTRAR
+//Recorro en orden el ABB para mostrar la expresion bien
 void mostrarArbolRecu(arbol a){
     if(a!=NULL){
         mostrarArbolRecu(a->hizq);
@@ -132,49 +106,65 @@ void mostrarArbolRecu(arbol a){
     }
 }
 
-//CARGAR
-void cargarArbolAtomic(arbol &a, string s){
-    a=new nodoABB;
-    setValor(a->info,stringAboolean(s));
-    a->hder=NULL;
-    a->hizq=NULL;
+datoABB darInfo(arbol a){
+    return a->info;
 }
 
-void cargarArbolCompoundNOT(arbol &a,arbol abb){
-    a = new nodoABB;
-    setNOT(a->info);
-    a->hder=abb;
-    a->hizq=NULL;
-    colocarParentesis(a);
-}
-
-//GUARDAR Y LEVANTAR
-void guardarArbolAux(arbol a, FILE * f){
-    if(a!=NULL){
-        guardarNodo(a->info,f);
-        guardarArbolAux(a->hizq,f);
-        guardarArbolAux(a->hder,f);
+boolean evaluarArbol(arbol a){
+    if(darDiscriminante(darInfo(a))==VALOR){
+        return darDatoBool(darInfo(a));
+    }else if(darDiscriminante(darInfo(a))==OPERADOR){
+            if(darOperador(darInfo(a))=='A'){
+               return (boolean) (evaluarArbol(a->hizq) && evaluarArbol(a->hder));//Aca iria la multiplicacion
+            }else if(darOperador(darInfo(a))== 'O'){
+                    return (boolean) (evaluarArbol(a->hizq) || evaluarArbol(a->hder)); //Aca iria la suma topeada en 1
+                     }
+            else//CASO NOT
+                return (boolean) !evaluarArbol(a->hder);
     }
 }
 
-void guardarArbol(arbol a, FILE * f) {
+void guardarArbol(arbol a, FILE * f){
+    if(a!=NULL){
+        guardarNodo(a->info,f);
+        guardarArbol(a->hizq,f);
+        guardarArbol(a->hder,f);
+    }
+}
+
+/*void guardarArbol(arbol a, FILE * f) {
     guardarArbolAux(a, f);
+}*/
+
+void insertarNodo(arbol &a, datoABB dato) {
+    if (a == NULL){
+        a = new nodoABB;
+        a->info = dato;
+        a->hizq = NULL;
+        a->hder = NULL;
+    }else{
+        if(darNumero(dato)<darNumero(a->info)) {
+            insertarNodo(a->hizq,dato);
+        }else{
+            insertarNodo(a->hder,dato);
+        }
+    }
 }
 
 void levantarArbol(arbol &a, FILE *f) {
     datoABB dat;
-
-    fread(&dat, sizeof(datoABB), 1, f);
+    //fread(&dat, sizeof(datoABB), 1, f);*/
+    levantarNodo(dat, f);
     while (!feof(f)){
-        nodoABB nuevoNodo;
+        /*nodoABB nuevoNodo;
         nuevoNodo.info = dat;
         nuevoNodo.hizq = NULL;
-        nuevoNodo.hder = NULL;
+        nuevoNodo.hder = NULL;*/
 
-        levantarNodo(nuevoNodo.info, f);
-        insertarNodo(a, nuevoNodo);
+        insertarNodo(a, dat);
+        levantarNodo(dat, f);
 
-        fread(&dat, sizeof(datoABB), 1, f);
+        //fread(&dat, sizeof(datoABB), 1, f);
     }
 }
 

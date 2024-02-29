@@ -1,19 +1,15 @@
 #include <stdio.h>
 #include "listaExpresiones.h"
 
-//DAR
-expresion darExpresion(ListaExp lExp, int i){
-    while(darNumero(lExp->exp)!=i){
-        lExp=lExp->sig;
-    }
-    return darExpresion(lExp);
+boolean existeExpresion(ListaExp lista, int num){
+    boolean existe=FALSE;
+    if(lista==NULL){
+        existe=FALSE;
+    }else if(num<=darNumero(lista->exp)){
+            existe =TRUE;
+        }
+    return existe;
 }
-
-expresion darExpresion(ListaExp lExp){
-    return lExp->exp;
-}
-
-//FUNCIONALIDADES
 void crearLista(ListaExp &l){
     l=NULL;
 }
@@ -25,14 +21,23 @@ boolean listaVacia(ListaExp l){
     return es;
 }
 
-boolean existeExpresion(ListaExp lista, int num){
-    boolean existe=FALSE;
-    if(lista==NULL){
-        existe=FALSE;
-    }else if(num<=darNumero(darExpresion(lista))){
-            existe =TRUE;
-        }
-    return existe;
+void mostrarExpresion(ListaExp lExp,int i){
+    while(darNumero(lExp->exp)!=i){
+        lExp=lExp->sig;
+    }
+
+    mostrarExpresion(lExp->exp);
+}
+
+expresion darExpresion(ListaExp lExp, int i){
+
+    while(darNumero(lExp->exp)!=i){
+        lExp=lExp->sig;
+    }
+    return lExp->exp;
+}
+expresion darPrimerExpresion(ListaExp lExp){
+    return lExp->exp;
 }
 
 void insFront(ListaExp &lExp, expresion e) {
@@ -51,15 +56,6 @@ void insFront(ListaExp &lExp, expresion e) {
 
 }
 
-//MOSTRAR
-void mostrarExpresion(ListaExp lExp,int i){
-    while(darNumero(lExp->exp)!=i){
-        lExp=lExp->sig;
-    }
-
-    mostrarExpresion(lExp->exp);
-}
-
 //PRUEBA
 void mostrarListaExp(ListaExp lExp) {
     printf("\nListaExp: ");
@@ -72,7 +68,6 @@ void mostrarListaExp(ListaExp lExp) {
     }
     printf("\n");
 }
-
 
 
 

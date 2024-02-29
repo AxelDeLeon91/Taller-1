@@ -139,19 +139,19 @@ void mayusMinus(string &str) {
 char reconocerComando(string palabra) {
     mayusMinus(palabra);
     char resultado;
-    if (streq(palabra, "atomic")){
+    if (streq(palabra, "atomic")==TRUE){
         resultado= 'A';
-    }else if(streq(palabra,"compound")){
+    }else if(streq(palabra,"compound")==TRUE){
         resultado= 'C';
-    }else if(streq(palabra,"show")){
+    }else if(streq(palabra,"show")==TRUE){
         resultado=  'H';
-    }else if(streq(palabra,"evaluate")){
+    }else if(streq(palabra,"evaluate")==TRUE){
         resultado=  'E';
-    }else if(streq(palabra,"save")){
+    }else if(streq(palabra,"save")==TRUE){
         resultado=  'S';
-    }else if(streq(palabra,"load")){
+    }else if(streq(palabra,"load")==TRUE){
         resultado=  'L';
-    }else if(streq(palabra,"exit")){
+    }else if(streq(palabra,"exit")==TRUE){
         resultado=  'X';
     }
     return resultado;
@@ -251,7 +251,7 @@ boolean validarFormatoArchivo(string s) {
     boolean valida = FALSE;
     int largo = strlar(s);
     if(largo>4) {
-        if (s[largo-3]=='.' && s[largo-2]=='d' && s[largo-1]=='a' && s[largo]=='t'){
+        if (s[largo-4]=='.' && s[largo-3]=='d' && s[largo-2]=='a' && s[largo-1]=='t'){  //estaban mal las posiciones (considerar que la ultima es el \0)
             for (int i = 0; i < largo - 4; i++) {
                 if (esLetra(s[i])==TRUE){
                     valida=TRUE;

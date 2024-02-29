@@ -11,35 +11,28 @@ typedef struct nodoA{
 
 typedef nodoABB * arbol;
 
-//FUNCIONALIADES
 void crear(arbol &a);
 boolean arbolVacio(arbol a);
+arbol darRaiz(arbol a);
+arbol hijoIzq(arbol a);
+arbol hijoDer(arbol a);
 void numerarArbol(arbol &a);
 void numerarRecursivo(arbol a , int &contador);
 void colocarParentesis(arbol &a);
 void colocarParIzq(arbol &a);
 void colocarParDer(arbol &a);
-boolean evaluarArbol(arbol a);
-arbol copiarArbol(arbol original);
-void insertarNodo(arbol &a, nodoABB nuevoNodo);
 void juntarArboles(arbol a, arbol b, datoABB dat, arbol &c);
-
-//DAR
-arbol darRaiz(arbol a);
-arbol hijoIzq(arbol a);
-arbol hijoDer(arbol a);
-datoABB darInfo(arbol a);
-
-//MOSTRAR
 void mostrarArbolRecu(arbol a);
-
-//CARGAR
 void cargarArbolAtomic(arbol &a, string s);
-void cargarArbolCompoundNOT(arbol &a,arbol abb);
+datoABB darInfo(arbol a);
+boolean evaluarArbol(arbol a);
+void mostrarDiscriminante(datoABB dat);
+arbol copiarArbol(arbol original);
 
-//GUARDAR Y LEVANTAR
-void guardarArbolAux(arbol a, FILE * f);
+//Guardar y Levantar
 void guardarArbol(arbol a, FILE * f);
+//void guardarArbol(arbol a, string s);
+void insertarNodo(arbol &a, nodoABB nuevoNodo);
 void levantarArbol(arbol &a, FILE *f);
 
 #endif // ARBOLEXPRESIONES_H_INCLUDED

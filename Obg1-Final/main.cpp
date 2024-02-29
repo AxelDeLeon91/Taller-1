@@ -12,15 +12,13 @@ int main()
         limpiarLista(lStr);
         string s;
         strcrear(s);
-        printf("Ingrese el comando a ejecutar: ");
+        printf("\nIngrese el comando a ejecutar: ");
         scan(s);
-        separarStringEnLista(s, lStr);
+        separarStringEnLista(s,lStr);
 
-        c = reconocerComando(lStr->str);
-        ejecutarComando(lStr, lExp, c);
-        printf("\n\n");
-        limpiarLista(lStr);
-    } while (c != 'X');
+        c=reconocerComando(lStr->str);
+        ejecutarComando(lStr,lExp,c);
 
-    return 0;
+    }while(c!= 'X');
+
 }

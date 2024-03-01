@@ -5,81 +5,110 @@ void ejecutarComando(listaString lStr, ListaExp &lExp, char c){
     switch(c){
         case 'A':
             if(cantStrings(lStr)==2){
-                if(validarAtomic(lStr)){
+                if(validarAtomic(lStr)==error0){
                         ejecutarAtomic(lStr,lExp);
                         break;
-                }else
-                    printf("\nComando Atomic mal escrito");
-            }else
-                printf("\nError en cantidad de parametros\nFormato Atomic: atomic valor");
-            break;
-
-        case 'H':
-             if(cantStrings(lStr)==2){
-                if(validarShow(lStr,lExp)){
-                        ejecutarShow(lStr,lExp);
-                        break;
-                }else
-                    printf("\nExpresion no existe");
-             }else
-                printf("\nError en cantidad de parametros\nFormato Show: show #expresion");
-            break;
-
-        case 'E':
-            if(cantStrings(lStr)==2){
-                if(validarEvaluate(lStr,lExp)){
-                        ejecutarEvaluate(lStr,lExp);
-                        break;
                 }else{
-                    printf("\nExpresion no existe");
+                    mostrarError(validarAtomic(lStr));
                     break;
                 }
             }else{
-                printf("\nError en cantidad de parametros\nFormato Evaluate: evaluate #expresion");
+                mostrarError(error9);
+                printf("\nFormato Atomic: atomic valor");
+                break;
+                }
+
+        case 'H':
+             if(cantStrings(lStr)==2){
+                if(validarShow(lStr,lExp)==error0){
+                        ejecutarShow(lStr,lExp);
+                        break;
+                }else{
+                    mostrarError(validarShow(lStr,lExp));
+                    break;
+                }
+             }else{
+                mostrarError(error9);
+                printf("\nFormato Show: show #expresion");
+                break;
+             }
+        case 'E':
+            if(cantStrings(lStr)==2){
+                if(validarEvaluate(lStr,lExp)==error0){
+                        ejecutarEvaluate(lStr,lExp);
+                        break;
+                }else{
+                    mostrarError(validarEvaluate(lStr,lExp));
+                    break;
+                }
+            }else{
+                mostrarError(error9);
+                printf("\nFormato Evaluate: evaluate #expresion");
                 break;
             }
 
         case 'L':
             if(cantStrings(lStr)==2){
-                if(validarLoad(lStr,lExp)){
+                if(validarLoad(lStr,lExp)==error0){
                         ejecutarLoad(lStr,lExp);
                         break;
-                }else
-                    printf("\nComando Load mal escrito");
-            }else
-                printf("\nError en cantidad de parametros\nFormato Load: load nombrearchivo.dat");
-            break;
+                }else{
+                    mostrarError(validarLoad(lStr,lExp));
+                    break;
+                }
+            }else{
+                mostrarError(error9);
+                printf("\nFormato Load: load nombrearchivo.dat");
+                break;
+            }
 
         case 'C':
                 if(cantStrings(lStr)==3){
-                     if(validarCompound3(lStr,lExp)){
+                     if(validarCompound3(lStr,lExp)==error0){
                         ejecutarCompound3(lStr,lExp);
+                        break;
                      }
-                     else printf("\nCompound mal escrito");
-
+                     else{
+                        mostrarError(validarCompound3(lStr,lExp));
+                        break;
+                     }
                 }else if(cantStrings(lStr)==4){
-                        if(validarCompound4(lStr,lExp)){
+                        if(validarCompound4(lStr,lExp)==error0){
                             ejecutarCompound4(lStr,lExp);
-                        }else printf("\nCompound mal escrito");
-                    }else
-                        printf("\nError en cantidad de parametros\nFormato Compound AND/OR: compound #expresion AND/OR #expresion\nFormato Compound NOT: compound NOT #expresion");
-                break;
+                            break;
+                        }else{
+                            mostrarError(validarCompound4(lStr,lExp));
+                            break;
+                        }
+                }else{
+                    mostrarError(error9);
+                    printf("\nFormato Compound AND/OR: compound #expresion AND/OR #expresion\nFormato Compound NOT: compound NOT #expresion");
+                    break;
+                    }
 
         case 'S':
                 if(cantStrings(lStr)==3){
-                    if(validarSave(lStr,lExp)){
+                    if(validarSave(lStr,lExp)==error0){
                          ejecutarSave(lStr,lExp);
-                        }else
-                            printf("\nComando Save mal escrito");
-                }else
-                    printf("\nError en cantidad de parametros\nFormato Save: save #expresion nombrearchivo.dat");
-                break;
+                         break;
+                        }else{
+                            mostrarError(validarSave(lStr,lExp));
+                            break;
+                        }
+                }else{
+                    mostrarError(error9);
+                    printf("\nFormato Save: save #expresion nombrearchivo.dat");
+                    break;
+                }
         case 'X':
                 if(cantStrings(lStr)==1){
                         //Libero memoria
-                }else
+                        break;
+                }else{
+                    mostrarError(error9);
                     printf("\nError en cantidad de parametros\nFormato Exit: exit");
-
+                    break;
+                }
         default:
             printf("\nNo ingresa ningun comando");
             break;
@@ -157,7 +186,7 @@ void ejecutarShow(listaString lStr, ListaExp lExp){
     mostrarExpresion(lExp,i);
 }
 
-void ejecutarSave(listaString lStr, ListaExp lExp) {
+void ejecutarSave(listaString lStr, ListaExp lExp){
     lStr = lStr->sig;
     int i = stringAentero(lStr->str);
     char c;
@@ -169,7 +198,10 @@ void ejecutarSave(listaString lStr, ListaExp lExp) {
     if(!existeArchivo(lStr->str) || c== 'S' || c== 's'){//Si no existe archivo o quiere sobreescribir, ejecuta el guardar expresion
         FILE *f = fopen(lStr->str,"wb");
         if (f != NULL){
-            guardarExpresion(darExpresion(lExp,i),f);
+            expresion e = darExpresion(lExp,i);
+            arbol a = darArbol(e);
+            numerarArbol(a);
+            guardarExpresion(e,f);
             fclose(f);
             printf("\nExpresion %d respaldada correctamente en ",i);
             print(lStr->str);
@@ -186,126 +218,9 @@ void ejecutarLoad(listaString lStr, ListaExp &lExp){
     lStr=lStr->sig;
     FILE * f=fopen(lStr->str, "rb");
     levantarExpresion(exp,f);
-    mostrarExpresion(exp);
     insFront(lExp,exp);
+    mostrarExpresion(darExpresion(lExp));
 }
 
-//FUNCIONALIDADES
-boolean validarOperador(string s){ //Valida que el string ingresado este en mayuscula y sea uno de los existentes
-    boolean valida=FALSE;
-    if(streq(s,"AND") || streq(s,"OR") || streq(s,"NOT")){
-        valida=TRUE;
-    }
-    return valida;
-}
 
-boolean validarAtomic(listaString lStr){ // valida que el valor booleano este bien escrito y en minuscula
-    boolean valida= FALSE;
-    listaString aux=lStr;
-    aux=aux->sig;
-    if(validarBool(aux->str)==TRUE){
-        valida=TRUE;
-    }
-    return valida;
-}
 
-boolean validarCompound3(listaString lStr, ListaExp lExp){ //Valida que el formato del compound con 3 strings sea: compound NOT valor
-    boolean valida= FALSE;
-    listaString aux=lStr;
-    aux=aux->sig;
-    if(validarOperador(aux->str)==TRUE){
-        aux=aux->sig;
-        if(esNumero(aux->str)){
-            int num = stringAentero(aux->str);
-            if(existeExpresion(lExp,num)==TRUE){
-                valida=TRUE;
-            }
-        }
-    }
-    return valida;
-}
-
-boolean validarCompound4(listaString lStr, ListaExp lExp){//Valida que el formato del compound con 4 strings sea: compound #expresion AND/OR #expresion
-    boolean valida=FALSE;
-    listaString aux=lStr;
-    aux=aux->sig;
-    if(validarEntero(aux->str)==TRUE){
-        int num = stringAentero(aux->str);
-            if(existeExpresion(lExp,num)==TRUE){
-                aux=aux->sig;
-                if(validarOperador(aux->str)==TRUE){
-                    aux=aux->sig;
-                    num = stringAentero(aux->str);
-                    if(existeExpresion(lExp,num)==TRUE){
-                        valida=TRUE;
-                    }
-                }
-            }
-        }
-    return valida;
-}
-
-boolean validarEvaluate(listaString lStr, ListaExp lExp){ //Valida que el formato del evaluate sea: evaluate #expresion
-    boolean valida=FALSE;
-    listaString aux=lStr;
-    aux=aux->sig;
-    if(esNumero(aux->str)){
-        int num = stringAentero(aux->str);
-        if(existeExpresion(lExp,num)==TRUE){
-            valida=TRUE;
-        }
-    }
-    return valida;
-}
-
-boolean validarShow(listaString lStr, ListaExp lExp){ //Valida que el formato del evaluate sea:
-    boolean valida=FALSE;
-    listaString aux=lStr;
-    aux=aux->sig;
-    if(esNumero(aux->str)){
-        int num = stringAentero(aux->str);
-        if(existeExpresion(lExp,num)==TRUE){
-            valida=TRUE;
-            }
-    }
-    return valida;
-}
-
-boolean validarSave(listaString lStr, ListaExp lExp){ //Valida que el formato del save sea: save #expresion nombrearchivo.dat
-    boolean valida=FALSE;
-    lStr = lStr->sig;
-    if(esNumero(lStr->str)){
-        int num = stringAentero(lStr->str);
-        if(existeExpresion(lExp,num)==TRUE){
-            lStr = lStr->sig;
-            if(validarFormatoArchivo(lStr->str)==TRUE){
-                valida=TRUE;
-            }
-        }
-    }
-
-    return valida;
-}
-boolean validarLoad(listaString lStr, ListaExp lExp){ //Valida que el formato del load sea: load nombrearchivo.dat
-    boolean valida=FALSE;
-    listaString aux=lStr;
-    aux=aux->sig;
-    if(validarFormatoArchivo(aux->str)==TRUE){
-        if(existeArchivo(aux->str)){
-            valida=TRUE;
-        }
-    }
-    return valida;
-    return TRUE;
-}
-
-//FUNCIONALIDADES
-boolean existeArchivo(string s) { //Chequea la existencia del archivo en disco.
-    boolean existe=FALSE;
-    FILE *f = fopen(s, "r");
-
-    if (f != NULL){
-        existe=TRUE;
-    }
-    return existe;
-}

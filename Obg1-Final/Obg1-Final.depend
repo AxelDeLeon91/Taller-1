@@ -133,75 +133,155 @@
 	"listaExpresiones.h"
 	"listaString.h"
 
-1709191619 source:c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\boolean.cpp
+1709246752 source:c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\boolean.cpp
 	<stdio.h>
 
-1709241259 source:c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\datosarbol.cpp
+1709246752 source:c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\datosarbol.cpp
 	<stdio.h>
 	"datosArbol.h"
 
-1709194257 c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\datosarbol.h
+1709246752 c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\datosarbol.h
 	<stdio.h>
 	"tipoDato.h"
 	"string.h"
 
-1708292258 c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\tipodato.h
+1709246752 c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\tipodato.h
 	<stdio.h>
 
-1709238777 c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\string.h
+1709259329 c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\string.h
 	<stdio.h>
 	"boolean.h"
 
-1709191619 c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\boolean.h
+1709246752 c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\boolean.h
 	<stdio.h>
 
-1708748823 source:c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\listastring.cpp
+1709246752 source:c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\listastring.cpp
 	<stdio.h>
 	"listaString.h"
 
-1708748823 c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\listastring.h
+1709246752 c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\listastring.h
 	<stdio.h>
 	"string.h"
 
-1709238767 source:c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\string.cpp
+1709260296 source:c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\string.cpp
 	<stdio.h>
 	"string.h"
 
-1708292152 source:c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\tipodato.cpp
+1709246752 source:c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\tipodato.cpp
 	<stdio.h>
 
-1709241259 source:c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\arbolexpresiones.cpp
+1709246752 source:c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\arbolexpresiones.cpp
 	<stdio.h>
 	"arbolExpresiones.h"
 
-1709194870 c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\arbolexpresiones.h
+1709246752 c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\arbolexpresiones.h
 	<stdio.h>
 	"datosArbol.h"
 
-1709191448 source:c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\main.cpp
+1709248572 source:c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\main.cpp
 	<stdio.h>
 	"comando.h"
 
-1709241259 source:c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\expresion.cpp
+1709259794 source:c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\expresion.cpp
 	<stdio.h>
 	"expresion.h"
 
-1709236005 c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\expresion.h
+1709246752 c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\expresion.h
 	<stdio.h>
 	"arbolExpresiones.h"
 
-1709241273 source:c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\comando.cpp
+1709260051 source:c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\comando.cpp
 	"comando.h"
 
-1709195191 c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\comando.h
-	"listaExpresiones.h"
-	"listaString.h"
+1709258422 c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\comando.h
+	<stdio.h>
+	"error.h"
 
-1709194870 c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\listaexpresiones.h
+1709259940 c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\listaexpresiones.h
 	<stdio.h>
 	"expresion.h"
 
-1709241259 source:c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\listaexpresiones.cpp
+1709259940 source:c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\listaexpresiones.cpp
 	<stdio.h>
 	"listaExpresiones.h"
+
+1709246750 source:c:\users\ignacio\desktop\obg1-final\arbolexpresiones.cpp
+	<stdio.h>
+	"arbolExpresiones.h"
+
+1709246750 c:\users\ignacio\desktop\obg1-final\arbolexpresiones.h
+	<stdio.h>
+	"datosArbol.h"
+
+1709246751 c:\users\ignacio\desktop\obg1-final\datosarbol.h
+	<stdio.h>
+	"tipoDato.h"
+	"string.h"
+
+1709246751 c:\users\ignacio\desktop\obg1-final\tipodato.h
+	<stdio.h>
+
+1709246751 c:\users\ignacio\desktop\obg1-final\string.h
+	<stdio.h>
+	"boolean.h"
+
+1709246750 c:\users\ignacio\desktop\obg1-final\boolean.h
+	<stdio.h>
+
+1709246750 source:c:\users\ignacio\desktop\obg1-final\boolean.cpp
+	<stdio.h>
+
+1709250741 source:c:\users\ignacio\desktop\obg1-final\comando.cpp
+	"comando.h"
+
+1709246750 c:\users\ignacio\desktop\obg1-final\comando.h
+	"listaExpresiones.h"
+	"listaString.h"
+
+1709246751 c:\users\ignacio\desktop\obg1-final\listaexpresiones.h
+	<stdio.h>
+	"expresion.h"
+
+1709246751 c:\users\ignacio\desktop\obg1-final\expresion.h
+	<stdio.h>
+	"arbolExpresiones.h"
+
+1709246751 c:\users\ignacio\desktop\obg1-final\listastring.h
+	<stdio.h>
+	"string.h"
+
+1709246750 source:c:\users\ignacio\desktop\obg1-final\datosarbol.cpp
+	<stdio.h>
+	"datosArbol.h"
+
+1709250760 source:c:\users\ignacio\desktop\obg1-final\expresion.cpp
+	<stdio.h>
+	"expresion.h"
+
+1709246751 source:c:\users\ignacio\desktop\obg1-final\listaexpresiones.cpp
+	<stdio.h>
+	"listaExpresiones.h"
+
+1709246751 source:c:\users\ignacio\desktop\obg1-final\listastring.cpp
+	<stdio.h>
+	"listaString.h"
+
+1709248571 source:c:\users\ignacio\desktop\obg1-final\main.cpp
+	<stdio.h>
+	"comando.h"
+
+1709247470 source:c:\users\ignacio\desktop\obg1-final\string.cpp
+	<stdio.h>
+	"string.h"
+
+1709246751 source:c:\users\ignacio\desktop\obg1-final\tipodato.cpp
+	<stdio.h>
+
+1709259341 source:c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\error.cpp
+	"error.h"
+
+1709258422 c:\users\elneg\onedrive\escritorio\facultad\taller 1\corregido\obg1-final\error.h
+	<stdio.h>
+	"listaExpresiones.h"
+	"listaString.h"
 

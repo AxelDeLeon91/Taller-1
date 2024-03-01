@@ -37,10 +37,8 @@ void mostrarExpresion(expresion e){ //Muestra por pantalla la expresion
 
 //GUARDAR Y LEVANTAR
 void guardarExpresion(expresion exp, FILE *f){ //Guarda la expresion exp en el file f
-    fwrite(&exp.numExpresion, sizeof(int), 1, f);
     guardarArbol(darArbol(exp), f);
 }
 void levantarExpresion(expresion &exp, FILE *f){ //Levanta la expresion exp desde el file f
-    fread(&exp.numExpresion, sizeof(int), 1, f);
     levantarArbol(exp.abbExpresion, f);
 }

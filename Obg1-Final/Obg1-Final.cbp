@@ -40,6 +40,8 @@
 		<Unit filename="comando.h" />
 		<Unit filename="datosArbol.cpp" />
 		<Unit filename="datosArbol.h" />
+		<Unit filename="error.cpp" />
+		<Unit filename="error.h" />
 		<Unit filename="expresion.cpp" />
 		<Unit filename="expresion.h" />
 		<Unit filename="listaExpresiones.cpp" />

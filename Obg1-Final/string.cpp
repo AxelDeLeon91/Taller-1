@@ -199,10 +199,10 @@ int stringAentero(string s){//Recibe un string y devuelve su valor entero
     return resu;
 }
 
-boolean esNumero(string s) {
+boolean esNumero(string s){
     boolean es=TRUE;
     int i = 0;
-    while (s[i] != '\0') {
+    while (s[i] != '\0'){
         if (!(s[i] >= '0' && s[i] <= '9')) {
             es=FALSE;
         }
@@ -273,8 +273,34 @@ char obtenerRespuestaValida(char &c){ //Utilizada en EjecutarSave para recibir u
     do{
         scanf(" %c", &c);
         if(c!= 'S' && c!= 's' && c!= 'N' && c!= 'n'){
-            printf("Por favor, ingrese una respuesta válida ('S' o 'N'): ");
+            printf("Por favor, ingrese una respuesta valida ('S' o 'N'): ");
         }
     } while(c!= 'S' && c!= 's' && c!= 'N' && c!= 'n');
     return c;
+}
+
+//HACER VALIDAR AND OR Y VALIDAR NOT
+boolean validarOrAnd(string s){ //Valida que el string ingresado este en mayuscula y sea OR o AND
+    boolean valida=FALSE;
+    if(streq(s,"AND") || streq(s,"OR")){
+        valida=TRUE;
+    }
+    return valida;
+}
+boolean validarNOT(string s){ //Valida que el string ingresado este en mayuscula y sea NOT
+    boolean valida=FALSE;
+    if(streq(s,"NOT")){
+        valida=TRUE;
+    }
+    return valida;
+}
+
+boolean existeArchivo(string s) { //Chequea la existencia del archivo en disco.
+    boolean existe=FALSE;
+    FILE *f = fopen(s, "r");
+
+    if (f != NULL){
+        existe=TRUE;
+    }
+    return existe;
 }

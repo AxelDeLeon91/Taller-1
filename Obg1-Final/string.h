@@ -39,4 +39,7 @@ boolean validarFormatoArchivo(string s);
 boolean validarEntero(string s);
 boolean esNumero(string s);
 char obtenerRespuestaValida(char &c);
+boolean validarOrAnd(string s);
+boolean validarNOT(string s);
+boolean existeArchivo(string s);
 #endif // STRING_H_INCLUDED

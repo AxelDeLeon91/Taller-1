@@ -15,9 +15,12 @@ int main()
         printf("Ingrese el comando a ejecutar: ");
         scan(s);
         separarStringEnLista(s, lStr);
-
+       // if(!listaVacia(lStr)){
+       if(lStr!=NULL){
         c = reconocerComando(lStr->str);
         ejecutarComando(lStr, lExp, c);
+        }else
+            printf("\nNo ingresa nada");
         printf("\n\n");
         limpiarLista(lStr);
     } while (c != 'X');

@@ -17,6 +17,7 @@ void separarStringEnLista(string original, listaString &lstr);
 void insBack(listaString &lista,string s);
 int cantStrings(listaString lStr);
 void crearListaString(listaString &lStr);
+boolean listaVacia(listaString lStr);
 
 void avanzarLstr(listaString &lStr);
 

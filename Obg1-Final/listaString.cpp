@@ -4,7 +4,12 @@
 void crearListaString(listaString &lStr){//Crea la ListaString
     lStr = NULL;
 }
-
+boolean listaVacia(listaString lStr){
+    boolean vacio=FALSE;
+    if(lStr==NULL)
+        vacio=TRUE;
+    return vacio;
+}
 void insBack(listaString &lista, string s){//Inserta el string s al final de listaString
     if (lista == NULL){
         lista = new nodoString;

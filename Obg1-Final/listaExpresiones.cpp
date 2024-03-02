@@ -29,6 +29,8 @@ boolean existeExpresion(ListaExp lista, int num){ //Chequea si existe la expresi
     boolean existe=FALSE;
     if(lista==NULL){
         existe=FALSE;
+    }else if(num==0){
+        existe=FALSE;
     }else if(num<=darNumero(darExpresion(lista))){
             existe =TRUE;
         }
@@ -49,6 +51,18 @@ void insFront(ListaExp &lExp, expresion e){ //Inserta la expresion e al principi
         lExp = aux;
     }
 
+}
+
+void limpiarListaExp(ListaExp &lExp){
+    while(lExp != NULL){
+        ListaExp aux = lExp;
+        lExp= aux->sig;
+        expresion e = darExpresion(lExp);
+        arbol a = darArbol(e);
+        eliminarArbol(a);
+        delete aux;
+    }
+    delete lExp;
 }
 
 //MOSTRAR

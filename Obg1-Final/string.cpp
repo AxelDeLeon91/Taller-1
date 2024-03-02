@@ -199,18 +199,6 @@ int stringAentero(string s){//Recibe un string y devuelve su valor entero
     return resu;
 }
 
-boolean esNumero(string s){
-    boolean es=TRUE;
-    int i = 0;
-    while (s[i] != '\0'){
-        if (!(s[i] >= '0' && s[i] <= '9')) {
-            es=FALSE;
-        }
-        i++;
-    }
-    return es;
-}
-
 boolean validarBool(string s){//Valida que el boolean este bien escrito
     boolean valida=FALSE;
     if(streq(s,"false")==TRUE){

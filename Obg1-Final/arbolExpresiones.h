@@ -23,6 +23,7 @@ boolean evaluarArbol(arbol a);
 arbol copiarArbol(arbol original);
 void insertarNodo(arbol &a, nodoABB nuevoNodo);
 void juntarArboles(arbol a, arbol b, datoABB dat, arbol &c);
+void eliminarArbol(arbol &a);
 
 //DAR
 arbol darRaiz(arbol a);

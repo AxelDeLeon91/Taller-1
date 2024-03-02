@@ -102,7 +102,8 @@ void ejecutarComando(listaString lStr, ListaExp &lExp, char c){
                 }
         case 'X':
                 if(cantStrings(lStr)==1){
-                        //Libero memoria
+                        limpiarLista(lStr);
+                        limpiarListaExp(lExp);
                         break;
                 }else{
                     mostrarError(error9);

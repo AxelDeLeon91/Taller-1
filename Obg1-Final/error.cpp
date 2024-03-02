@@ -53,7 +53,7 @@ numError validarCompound3(listaString lStr, ListaExp lExp){ //Valida que el form
     aux=aux->sig;
     if(validarNOT(aux->str)==TRUE){
         aux=aux->sig;
-        if(esNumero(aux->str)){
+        if(validarEntero(aux->str)){
             int num = stringAentero(aux->str);
             if(existeExpresion(lExp,num)==TRUE){
                 e=error0;
@@ -122,7 +122,7 @@ numError validarShow(listaString lStr, ListaExp lExp){ //Valida que el formato d
     numError e=error0;
     listaString aux=lStr;
     aux=aux->sig;
-    if(esNumero(aux->str)){
+    if(validarEntero(aux->str)){
         int num = stringAentero(aux->str);
         if(existeExpresion(lExp,num)==TRUE){
             e=error0;
@@ -138,7 +138,7 @@ numError validarShow(listaString lStr, ListaExp lExp){ //Valida que el formato d
 numError validarSave(listaString lStr, ListaExp lExp){ //Valida que el formato del save sea: save #expresion nombrearchivo.dat
     numError e=error0;
     lStr = lStr->sig;
-    if(esNumero(lStr->str)){
+    if(validarEntero(lStr->str)){
         int num = stringAentero(lStr->str);
         if(existeExpresion(lExp,num)==TRUE){
             lStr = lStr->sig;

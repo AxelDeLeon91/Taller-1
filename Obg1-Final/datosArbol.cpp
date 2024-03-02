@@ -74,7 +74,6 @@ char darDatoChar(datoABB dat){ //Devuelve el datochar que se encuentra en dat, y
 
 //MOSTRAR
 void mostrarNodoAbb(datoABB dat){ //Muestra lo que se encuentre en datoABB
-    printf(" ");
         if(darDiscriminante(dat)==OPERADOR){
            mostrarOperador(dat);
         }else if(darDiscriminante(dat)==VALOR){
@@ -87,9 +86,9 @@ void mostrarNodoAbb(datoABB dat){ //Muestra lo que se encuentre en datoABB
 void mostrarValor(datoABB dat){ //Muestra el dato booleano que hay en dat.union
     boolean b=darDatoBool(dat);
     if(b==TRUE){
-        printf("TRUE");
+        printf("true");
     }else{
-        printf("FALSE");
+        printf("false");
     }
 
 }
@@ -97,13 +96,13 @@ void mostrarValor(datoABB dat){ //Muestra el dato booleano que hay en dat.union
 void mostrarOperador(datoABB dat){ //Muestra el dato Operador que hay en dat.union
     switch (dat.datos.op){
         case 'A':
-            printf("AND");
+            printf(" AND ");
             break;
         case 'N':
-            printf("NOT");
+            printf("NOT ");
             break;
         case 'O':
-            printf("OR");
+            printf(" OR ");
             break;
     }
 }

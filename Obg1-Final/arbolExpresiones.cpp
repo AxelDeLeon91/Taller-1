@@ -103,6 +103,14 @@ void juntarArboles(arbol a, arbol b, datoABB dat, arbol &c){ //Crea el arbol C, 
     c->hder = b;
     colocarParentesis(c);
 }
+void eliminarArbol(arbol &a){
+    if (a != NULL){
+        eliminarArbol(a->hizq);
+        eliminarArbol(a->hder);
+        delete a;
+        a = NULL;
+    }
+}
 
 //DAR
 arbol darRaiz(arbol a){ //Devuelve la raiz de a

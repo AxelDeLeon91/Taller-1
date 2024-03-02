@@ -21,12 +21,6 @@ char reconocerComando(string lStr);
 //Pasa las letras mayusculas a minuscula
 void mayusMinus(string &str);
 
-//Reconoce si el string es mayus o minus: TRUE= MAYUS, FALSE = MINUS
-boolean esMayus(string str);
-
-//Le da un valor de 1 a true o 0 a false
-int volverNumero(char c);
-
 //Segun el string, te dice que Operador es, retorna la Inicial o E en caso de error
 char saberOperador(string palabra);
 
@@ -37,7 +31,6 @@ int stringAentero(string s);
 boolean validarBool(string s);
 boolean validarFormatoArchivo(string s);
 boolean validarEntero(string s);
-boolean esNumero(string s);
 char obtenerRespuestaValida(char &c);
 boolean validarOrAnd(string s);
 boolean validarNOT(string s);

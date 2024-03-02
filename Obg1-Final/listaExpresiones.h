@@ -19,7 +19,7 @@ void crearLista(ListaExp &l);
 boolean listaVacia(ListaExp l);
 boolean existeExpresion(ListaExp lista, int num);
 void insFront(ListaExp &lExp, expresion e);
-void limpiarListaExp(ListaExp &lExp);
+void limpiarListaExp(ListaExp &lExp);//Prec: Lista expresion no es vacia
 
 //MOSTRAR
 void mostrarExpresion(ListaExp lExp, int i);

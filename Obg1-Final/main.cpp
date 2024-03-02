@@ -21,7 +21,6 @@ int main()
         }else
             printf("\nNo ingresa nada");
         printf("\n\n");
-        limpiarLista(lStr);
     } while (c != 'X');
     return 0;
 }

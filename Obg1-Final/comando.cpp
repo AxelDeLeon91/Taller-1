@@ -103,7 +103,9 @@ void ejecutarComando(listaString lStr, ListaExp &lExp, char c){
         case 'X':
                 if(cantStrings(lStr)==1){
                         limpiarLista(lStr);
-                        limpiarListaExp(lExp);
+                        if(!listaVacia(lExp)){
+                            limpiarListaExp(lExp);
+                        }
                         break;
                 }else{
                     mostrarError(error9);

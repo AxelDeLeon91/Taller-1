@@ -26,6 +26,9 @@ void crearExpre(expresion &e){//Inicializa la expresion
     e.numExpresion=0;
     e.abbExpresion= NULL;
 }
+void eliminarExpresion(expresion &e){
+    eliminarArbol(e.abbExpresion);
+}
 
 //MOSTRAR
 void mostrarExpresion(expresion e){ //Muestra por pantalla la expresion

@@ -20,6 +20,7 @@ void setNumExp(expresion &e, int i);
 
 //FUNCIONALIDADES
 void crearExpre(expresion &e);
+void eliminarExpresion(expresion &e);
 
 //MOSTRAR
 void mostrarExpresion(expresion e);

@@ -52,17 +52,15 @@ void insFront(ListaExp &lExp, expresion e){ //Inserta la expresion e al principi
     }
 
 }
-
+//Prec: Lista expresion no es vacia
 void limpiarListaExp(ListaExp &lExp){
-    while(lExp != NULL){
-        ListaExp aux = lExp;
-        lExp= aux->sig;
-        expresion e = darExpresion(lExp);
-        arbol a = darArbol(e);
-        eliminarArbol(a);
-        delete aux;
+    if(lExp->sig==NULL){
+        eliminarExpresion(lExp->exp);
+        delete lExp;
+        lExp=NULL;
+    }else{
+        limpiarListaExp(lExp->sig);
     }
-    delete lExp;
 }
 
 //MOSTRAR

@@ -88,7 +88,7 @@ void insertarNodo(arbol &a, datoABB dato){ //Inserta los nodos en el arbol, usan
         a->hizq = NULL;
         a->hder = NULL;
     }else{
-        if(darNumero(dato)<darNumero(a->info)) {
+        if(darNumero(dato)<darNumero(a->info)){
             insertarNodo(a->hizq,dato);
         }else{
             insertarNodo(a->hder,dato);
